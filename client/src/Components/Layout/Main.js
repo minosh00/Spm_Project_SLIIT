@@ -32,7 +32,7 @@ const Home = ()=>(
     </div>
 <br></br>
 
-  <footer class="blockquote-footer" style={{color:"white"}}>Wijaya Beach is a family-owned business. Since the opening of our restaurant in 1980 we have become one of the best-loved establishments in the area. We pride ourselves on our popularity with the local expat community and the number of visitors who return year after year to enjoy our food, cocktails, stunning beach and relaxed ambience.
+  <footer class="blockquote-footer" style={{}}>Wijaya Beach is a family-owned business. Since the opening of our restaurant in 1980 we have become one of the best-loved establishments in the area. We pride ourselves on our popularity with the local expat community and the number of visitors who return year after year to enjoy our food, cocktails, stunning beach and relaxed ambience.
 
 Our beachfront restaurant and bar serves an eclectic mix of Asian and European food, and we have an eight-room luxury bed and breakfast set around the courtyard behind the restaurant.
 
