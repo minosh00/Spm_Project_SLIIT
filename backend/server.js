@@ -31,6 +31,8 @@ app.use("/user",user);
 const foodRoute = require('./routes/Food.Route');
 app.use('/foods',foodRoute());
 
+app.use('/api', require('./routes/RoomsReservationRoutes'));
+
 //app.use("/fooo", require("./Routes/Food.Route"));
 
 mongoose.connect(

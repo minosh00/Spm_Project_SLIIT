@@ -5,6 +5,10 @@
   "main": "index.js",
  
   "author": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
