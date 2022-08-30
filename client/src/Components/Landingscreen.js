@@ -13,8 +13,12 @@ function Landingscreen() {
         <div className="col-md-9 my-auto" style={{borderRight:'8px solid white'}}>
           <h2 style={{ color: "white", fontSize: "120px" }} data-aos='zoom-in'>Welcome to Wijaya Beach Hotel</h2>
           <h1 style={{ color: "white"}} data-aos='zoom-out' >“There is only one bigest hotel in Galle“</h1>
-          <Link to="/home">
+          <Link to="/login">
              <button className="btn btn-primary">Get Started</button>
+          </Link>
+          <br></br>
+          <Link to="/register">
+             <button className="btn btn-primary">Register </button>
           </Link>
         </div>
 

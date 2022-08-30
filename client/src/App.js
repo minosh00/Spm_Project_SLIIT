@@ -1,26 +1,40 @@
-import React from 'react';
-import Navbar from './Components/Navbar';
-import Login from './Components/Login';
-import Home from './Components/Home';
+
 import 'antd/dist/antd.css';
 import "./App.css";
-import Landingscreen from './Components/Landingscreen';
+import React, { Profiler, useEffect } from "react";
 
-import Register from './Components/Register';
-import Admin  from './Components/Admin';
-import PrivateRoute from './hocs/PrivateRoute';
-import UnPrivateRoute from './hocs/UnPrivateRoute';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
+import Landingscreen from './Components/Landingscreen';
+import Login from "./Components/Auth/Login";
+import Register from "./Components/Auth/Register";
+import NavBar from "./Components/Layout/NavBar";
+
+
+import UpdateMenus from "./Components/Restaurants/UpdateMenus";
+
+import Restaurants from "./Components/Restaurants/Menus";
+
+
+let isauth = localStorage.getItem('user');
+
 
 function App() {
   return (
     <Router>
-      <Navbar/>
-      <Route   exact path="/" component={Landingscreen}/>
-      <UnPrivateRoute path="/login" component={Login}/>
-      <UnPrivateRoute path="/register" component={Register}/>
-      <PrivateRoute path="/admin" roles={["admin"]} component={Admin}/>
+      <NavBar/>	
+      <Routes>
+      <Route exact path="/" element={<Landingscreen/>} />
+      <Route exact path="/login" element={<Login/>} />
+      <Route exact path="/register" element={<Register/>} />
+      
+      <Route  path="/Restaurants" element={<Restaurants/>} />
 
+      <Route path="/updateFoodItem/:id" element={< UpdateMenus/>} />
+      
+
+
+      </Routes>
     </Router>
 
   );
