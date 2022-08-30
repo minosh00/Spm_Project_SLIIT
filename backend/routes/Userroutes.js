@@ -1,70 +1,40 @@
-const express = require('express');
-const userRouter = express.Router();
-const passport = require('passport');
-const passportConfig = require('../passport');
-const JWT = require('jsonwebtoken');
-const User = require('../models/User');
+const express = require("express");
+const router = express.Router();
+const auth = require("../Middleware/auth");
+const { check } = require("express-validator");
+const {getUsers,getUser ,deleteUser , createUser , updateUser , registerUser ,authUser , loginUser , getUsersByID} = require("../Controllers/userController");
 
 
-
-const signToken = userID =>{
-    return JWT.sign({
-        iss : "minosh",
-        sub : userID
-    },"minosh",{expiresIn : "1h"});
-}
-
-userRouter.post('/register',(req,res)=>{
-    const { username,password,role ,Phonenumber,lname,fname} = req.body;
-    User.findOne({username},(err,user)=>{
-        if(err)
-            res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-        if(user)
-            res.status(400).json({message : {msgBody : "Username is already taken", msgError: true}});
-        else{
-            const newUser = new User({username,password,role,Phonenumber,lname,fname});
-            newUser.save(err=>{
-                if(err)
-                    res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-                else
-                    res.status(201).json({message : {msgBody : "Account successfully created", msgError: false}});
-            });
-        }
-    });
-});
-
-userRouter.post('/login',passport.authenticate('local',{session : false}),(req,res)=>{
-    if(req.isAuthenticated()){
-       const {_id,username,role} = req.user;
-       const token = signToken(_id);
-       res.cookie('access_token',token,{httpOnly: true, sameSite:true}); 
-       res.status(200).json({isAuthenticated : true,user : {username,role}});
-    }
-});
-
-userRouter.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    res.clearCookie('access_token');
-    res.json({user:{username : "", role : ""},success : true});
-});
+var jwtSecret = "mysecrettoken";
 
 
+router.post("/createUser",createUser);
+router.get("/getAllUsers",getUsers);
+router.get("/getUserById/:id",getUser);
+router.delete("/deleteUser/:id",deleteUser);
+router.patch("/updateUserById/:id",updateUser);
 
 
-userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    if(req.user.role === 'admin'){
-        res.status(200).json({message : {msgBody : 'You are an admin', msgError : false}});
-    }
-    else
-        res.status(403).json({message : {msgBody : "You're not an admin,go away", msgError : true}});
-});
+router.post("/signup",
+	[
+		check("Fullname", "Name is required").not().isEmpty(),
+		check("email", "Please include a valid email").isEmail(),
+		check(
+			"password",
+			"Please enter password with 6 or more characters"
+		).isLength({ min: 6 }),
+	],
+	registerUser);
 
-userRouter.get('/authenticated',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const {username,role} = req.user;
-    res.status(200).json({isAuthenticated : true, user : {username,role}});
-});
+router.get("/auth", auth,authUser);
+
+router.post(
+	"/signin",
+	[
+		check("email", "Please include a valid email").isEmail(),
+		check("password", "Password is required").exists(),
+	],
+	loginUser);
 
 
-
-
-
-module.exports = userRouter;
+module.exports = router;

@@ -1,25 +1,59 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+
+//import Routes 
+const user = require("./Routes/userRoutes");
+
+
 const app = express();
-const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
-app.use(cookieParser());
-app.use(express.json());
 
-mongoose.connect('mongodb+srv://minosh:minosh@cluster0.u1yxx.mongodb.net/hotelssssssystem?retryWrites=true&w=majority');
 
-mongoose.connection.on('error', err=>{
+const PORT = process.env.PORT || 5000;
 
-    console.log("connection failed ");
+app.use(
+  cors({
+    origin: "*", 
+  })
+);
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+const dotenv = require("dotenv");
+dotenv.config();
+
+app.use("/user",user);
+
+
+const foodRoute = require('./routes/Food.Route');
+app.use('/foods',foodRoute());
+
+//app.use("/fooo", require("./Routes/Food.Route"));
+
+mongoose.connect(
+  process.env.DB_URL, {
+    //type warnings
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+
+  .then(() => {
+    console.log("Mongo DB connected successfully");
+  })
+
+  .catch((err) => console.log("DB connection failed", err));
+
+app.listen(PORT, () => {
+  console.log(`Backend App is running on ${PORT}`);
 });
 
-mongoose.connection.on('connected' , connected=>{
-    console.log('connected with database ');
-});
 
-const userRouter = require('./routes/Userroutes');
-app.use('/user',userRouter);
 
-app.listen(5000,()=>{
-    console.log('express server started');
-});
+
+//const server = http.createServer(app);
+
+
+
