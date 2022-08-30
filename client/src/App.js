@@ -1,4 +1,5 @@
 
+
 import 'antd/dist/antd.css';
 import "./App.css";
 import React, { Profiler, useEffect } from "react";
@@ -15,6 +16,8 @@ import UpdateMenus from "./Components/Restaurants/UpdateMenus";
 
 import Restaurants from "./Components/Restaurants/Menus";
 
+import Home from "./Components/Layout/Main";
+
 
 let isauth = localStorage.getItem('user');
 
@@ -28,6 +31,8 @@ function App() {
       <Route exact path="/login" element={<Login/>} />
       <Route exact path="/register" element={<Register/>} />
       
+
+      <Route exact path="/dashboard" element={<Home/>} />
       <Route  path="/Restaurants" element={<Restaurants/>} />
 
       <Route path="/updateFoodItem/:id" element={< UpdateMenus/>} />
