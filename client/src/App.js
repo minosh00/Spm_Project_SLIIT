@@ -17,6 +17,8 @@ import UpdateMenus from "./Components/Restaurants/UpdateMenus";
 import Restaurants from "./Components/Restaurants/Menus";
 
 import Home from "./Components/Layout/Main";
+import AddRooms from './Components/Rooms/ViewRooms';
+import ViewRooms from './Components/Rooms/AddRooms';
 
 
 let isauth = localStorage.getItem('user');
@@ -37,7 +39,8 @@ function App() {
 
       <Route path="/updateFoodItem/:id" element={< UpdateMenus/>} />
       
-
+      <Route path="/addroom" element={<AddRooms />} />
+      <Route path="/viewroom" element={<ViewRooms />} />
 
       </Routes>
     </Router>
