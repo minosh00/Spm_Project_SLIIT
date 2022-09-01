@@ -33,6 +33,9 @@ app.use('/foods',foodRoute());
 
 app.use('/api', require('./routes/RoomsReservationRoutes'));
 
+// comments API
+app.use('/api', require('./routes/Comment.Routes'));
+
 //app.use("/fooo", require("./Routes/Food.Route"));
 
 mongoose.connect(
