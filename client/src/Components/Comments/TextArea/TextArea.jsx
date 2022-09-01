@@ -1,14 +1,23 @@
-import * as React from 'react';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import * as React from "react";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
-export default function TextArea({onChange}) {
-
+export default function TextArea({ onChange, error, helperText }) {
   return (
     <TextareaAutosize
+      error={error}
+      helperText={helperText}
       aria-label="empty textarea"
       placeholder="Type your comment here"
       onChange={(e) => onChange(e.target.value)}
-      style={{ width: '100%', border: '1px', borderRadius: '12px', borderStyle: "solid", borderColor: "gray", padding: '12px', outline: 'none' }}
+      style={{
+        width: "100%",
+        border: "1px",
+        borderRadius: "12px",
+        borderStyle: "solid",
+        borderColor: "gray",
+        padding: "12px",
+        outline: "none",
+      }}
     />
   );
 }

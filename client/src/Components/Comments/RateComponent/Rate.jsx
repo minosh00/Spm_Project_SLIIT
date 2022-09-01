@@ -5,18 +5,18 @@ import Typography from "@mui/material/Typography";
 export default function RateComponent({
   readOnly,
   caption,
-  disabled,
+  disabled = false,
   captionDisabled,
-  initValue,
+  initValue = 0,
   onClick,
-  size,
+  size = 'small',
 }) {
   const [value, setValue] = React.useState(initValue);
 
   return (
     <div className="w-fit">
       {!captionDisabled && (
-        <Typography component="legend">{caption}</Typography>
+        <Typography component="legend">{caption&& caption}</Typography>
       )}
       <Rating
         size={`${size}`}
@@ -24,9 +24,9 @@ export default function RateComponent({
         name={caption ? caption : ""}
         value={value}
         disabled={disabled}
-        onChange={(event, newValue) => {
+        onClick = {onClick && (() => onClick(value))}
+        onChange={(_event, newValue) => {
           setValue(newValue);
-          onClick && onClick(value);
         }}
       />
     </div>
