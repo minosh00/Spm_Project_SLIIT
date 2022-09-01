@@ -43,6 +43,19 @@ const commentsController = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
+  //Update comment
+  updateComment: async (req, res) => {
+    try {
+      const { noOfStars, comment, userEmail, userPNumber, userImage } = req.body;
+      await Comment.findOneAndUpdate({ _id: req.params.id }, { noOfStars, comment, userEmail, userPNumber, userImage })
+
+      res.json({ msg: "Comment updated!" })
+
+    } catch (err) {
+      return res.status(500).json({ msg: err.message })
+    }
+  },
 };
 
 module.exports = commentsController;

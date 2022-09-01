@@ -6,6 +6,7 @@ router.route('/comments')
     .post(CommentService.createComment);
 
 router.route('/comments/:id')
-    .get(CommentService.getCommentByID);
+    .get(CommentService.getCommentByID)
+    .put(CommentService.updateComment);
 
 module.exports = router;
