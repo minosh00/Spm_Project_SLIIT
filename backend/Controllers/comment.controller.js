@@ -22,10 +22,23 @@ const commentsController = {
     }
   },
 
+  // Get all the comments
   getComments: async (req, res) => {
     try {
       const comments = await Comment.find();
       res.json(comments);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  // Get comment by ID
+  getCommentByID: async (req, res) => {
+    console.log(req.params.id)
+    try {
+      let id = req.params.id;
+      const comment = await Comment.findById(id);
+      res.json(comment);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
