@@ -3,7 +3,6 @@ const Comment = require("../models/Comment");
 const commentsController = {
   // Create Comment
   createComment: async (req, res) => {
-    console.log('controller')
     try {
       const { noOfStars, comment, userEmail, userPNumber, userImage } =
         req.body;
@@ -18,6 +17,15 @@ const commentsController = {
 
       await newComment.save();
       res.json({ msg: "Comment added!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  getComments: async (req, res) => {
+    try {
+      const comments = await Comment.find();
+      res.json(comments);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
