@@ -7,7 +7,7 @@ export default function RateComponent({
   caption,
   disabled = false,
   captionDisabled,
-  initValue,
+  initValue = 0,
   onClick,
   size = "small",
 }) {
@@ -20,7 +20,7 @@ export default function RateComponent({
   return (
     <div className="w-fit">
       {!captionDisabled && (
-        <Typography component="legend">{caption && caption}</Typography>
+        <Typography component="legend">{caption&& caption}</Typography>
       )}
       <Rating
         size={`${size}`}
@@ -28,7 +28,7 @@ export default function RateComponent({
         name={caption ? caption : ""}
         value={value}
         disabled={disabled}
-        onClick={onClick && onClick(value)}
+        onClick = {onClick && (() => onClick(value))}
         onChange={(_event, newValue) => {
           setValue(newValue);
         }}
