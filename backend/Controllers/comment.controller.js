@@ -53,9 +53,20 @@ const commentsController = {
       res.json({ msg: "Comment updated!" })
 
     } catch (err) {
-      return res.status(500).json({ msg: err.message })
+      return res.status(500).json({ msg: err.message });
     }
   },
+
+  // Delete comment
+  deleteComment: async (req, res) => {
+    try{
+        let id = req.params.id;
+        await Comment.findByIdAndDelete(id)
+        res.json({msg: "Comment deleted!"})
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
+    }
+  }
 };
 
 module.exports = commentsController;
