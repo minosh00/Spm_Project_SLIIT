@@ -7,6 +7,7 @@ const CommentsSection = () => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    console.log(localStorage.getItem("user"))
     axios
       .get("http://localhost:5000/api/comments")
       .then((res) => {
@@ -25,7 +26,7 @@ const CommentsSection = () => {
   return (
     <div className="flex justify-center items-center px-10">
       <div className="flex justify-end items-end">
-        <CommentButton onClick={() => handleRedirect} size="small" variant="contained" />
+        <CommentButton label="Add Review" onClick={() => handleRedirect()} size="small" variant="contained" />
       </div>
       {comments.map((comment) => (
         <div className="my-4">
