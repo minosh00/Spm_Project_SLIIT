@@ -24,7 +24,7 @@ export default function RateComponent({
         name={caption ? caption : ""}
         value={value}
         disabled={disabled}
-        onClick = {onClick && (() => onClick(value))}
+        onClick = {onClick && onClick(value)}
         onChange={(_event, newValue) => {
           setValue(newValue);
         }}
