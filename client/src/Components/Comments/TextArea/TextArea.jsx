@@ -4,8 +4,6 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 export default function TextArea({ onChange, error, value, helperText }) {
   return (
     <TextareaAutosize
-      error={error}
-      helperText={helperText}
       aria-label="empty textarea"
       placeholder="Type your comment here"
       onChange={(e) => onChange(e.target.value)}
