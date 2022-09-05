@@ -14,6 +14,11 @@ const RoomsReservationSchema = new mongoose.Schema({
         unique: true
     },
 
+    RoomIMG: {
+        type: String,
+        required: true
+    },
+
     Description: {
         type: String,
         required: true
