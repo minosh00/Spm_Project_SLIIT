@@ -1,5 +1,6 @@
 import 'antd/dist/antd.css';
 import "./App.css";
+import "./Components/Rooms/Rooms.css";
 import React, { Profiler, useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
@@ -15,6 +16,8 @@ import Home from "./Components/Layout/Main";
 //cheeee
 import ViewRooms from './Components/Rooms/ViewRooms';
 import AddRooms from './Components/Rooms/AddRooms';
+import MainRoom from './Components/Rooms/MainRoom';
+import UpdateRoom from './Components/Rooms/UpdateRoom';
 
 
 let isauth = localStorage.getItem('user');
@@ -35,8 +38,10 @@ function App() {
 
       <Route path="/updateFoodItem/:id" element={< UpdateMenus/>} />
       
+      <Route path="/mainroom" element={<MainRoom />} />
       <Route path="/addroom" element={<AddRooms />} />
       <Route path="/viewroom" element={<ViewRooms />} />
+      <Route path="/updateroom/:id" element={<UpdateRoom />} />
 
       </Routes>
     </Router>
