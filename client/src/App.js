@@ -13,11 +13,15 @@ import UpdateMenus from "./Components/Restaurants/UpdateMenus";
 import Restaurants from "./Components/Restaurants/Menus";
 import Home from "./Components/Layout/Main";
 
+
 //cheeee
 import ViewRooms from './Components/Rooms/ViewRooms';
 import AddRooms from './Components/Rooms/AddRooms';
 import MainRoom from './Components/Rooms/MainRoom';
 import UpdateRoom from './Components/Rooms/UpdateRoom';
+
+import CommentsSection from './Components/Comments/CommentsSection';
+import AddComment from './Components/Comments/AddComment';
 
 
 let isauth = localStorage.getItem('user');
@@ -42,6 +46,9 @@ function App() {
       <Route path="/addroom" element={<AddRooms />} />
       <Route path="/viewroom" element={<ViewRooms />} />
       <Route path="/updateroom/:id" element={<UpdateRoom />} />
+
+      <Route path="/comments-section" element={<CommentsSection />} />
+      <Route path="/comments-section/create" element={<AddComment />} />
 
       </Routes>
     </Router>
