@@ -9,8 +9,7 @@ import Register from "./Components/Auth/Register";
 import NavBar from "./Components/Layout/NavBar";
 
 
-import UpdateMenus from "./Components/Rest/AllMenu";
-import Restaurants from "./Components/Rest/EditFood";
+import AddMenu from "./Components/Restaurants/AddMenu";
 import Home from "./Components/Layout/Main";
 
 
@@ -39,9 +38,9 @@ function App() {
 
 
       <Route exact path="/dashboard" element={<Home/>} />
-      <Route  path="/restaurant/menus" element={<UpdateMenus/>} />
+      <Route  path="/AddMenu" element={<AddMenu/>} />
                
-                    <Route path='/rest/edit-food/:id' exact component={<Restaurants/>} />
+       
       
               
       
