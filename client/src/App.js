@@ -2,15 +2,15 @@ import 'antd/dist/antd.css';
 import "./App.css";
 import "./Components/Rooms/Rooms.css";
 import React, { Profiler, useEffect } from "react";
-
 import { BrowserRouter as Router, Routes, Route  } from "react-router-dom";
 import Landingscreen from './Components/Landingscreen';
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import NavBar from "./Components/Layout/NavBar";
 
-import UpdateMenus from "./Components/Restaurants/UpdateMenus";
-import Restaurants from "./Components/Restaurants/Menus";
+
+import UpdateMenus from "./Components/Rest/AllMenu";
+import Restaurants from "./Components/Rest/EditFood";
 import Home from "./Components/Layout/Main";
 
 
@@ -37,10 +37,13 @@ function App() {
       <Route exact path="/register" element={<Register/>} />
       
 
-      <Route exact path="/dashboard" element={<Home/>} />
-      <Route  path="/Restaurants" element={<Restaurants/>} />
 
-      <Route path="/updateFoodItem/:id" element={< UpdateMenus/>} />
+      <Route exact path="/dashboard" element={<Home/>} />
+      <Route  path="/restaurant/menus" element={<UpdateMenus/>} />
+               
+                    <Route path='/rest/edit-food/:id' exact component={<Restaurants/>} />
+      
+              
       
       <Route path="/mainroom" element={<MainRoom />} />
       <Route path="/addroom" element={<AddRooms />} />
