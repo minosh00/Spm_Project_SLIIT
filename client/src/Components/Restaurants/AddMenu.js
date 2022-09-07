@@ -103,14 +103,7 @@ const AddMenu = () => {
                                    </div>
 
 
-                                   <div class="form-floating mb-3">
-                                   <label for="floatingInput">  Gruop Members Emails </label>
-                                    
-                                       <textarea class="form-control" id="exampleFormControlTextarea3"  onChange={(f) => setGruopMembersEmail(f.target.value)}  required  placeholder="  Gruop Members emails"  rows="6">
-                                       </textarea>
-
-                                   </div>
-
+                                 =
 
                                    <div class="form-floating mb-3">
                                    <label for="floatingInput">  Image Link </label>
