@@ -2,11 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CommentButton from "./Button/CommentButton";
 import Comment from "./Comment/Comment";
-<<<<<<< HEAD
 import "./styles/CommentsSection.css";
-=======
-import "./styles/CommentsSection.css"
->>>>>>> 9ad8af8 (changed styles)
 
 const CommentsSection = () => {
   const [comments, setComments] = useState([]);
@@ -47,7 +43,6 @@ const CommentsSection = () => {
   return (
     <div className="cs-background">
       <div className="cs-add-button">
-<<<<<<< HEAD
         <CommentButton
           label="Add Review"
           onClick={() => handleRedirect()}
@@ -57,17 +52,11 @@ const CommentsSection = () => {
       </div>
       {comments.map((comment) => (
         <div key={comment._id} className="cs-comment">
-=======
-        <CommentButton label="Add Review" onClick={() => handleRedirect()} size="small" variant="contained" />
-      </div>
-      {comments.map((comment) => (
-        <div className="cs-comment">
->>>>>>> 9ad8af8 (changed styles)
           <Comment
             commentText={comment.comment}
             image={comment.userImage}
             stars={comment.noOfStars}
-            username={comment.userEmail}
+            username={comment.userEmail.split("@")[0]}
             key={comment._id}
             onDelete={() => deleteComment(comment._id)}
             onEdit={() => window.location.href = `/comments-section/edit/${comment._id}`}
