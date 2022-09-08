@@ -33,9 +33,9 @@ function RoomCards() {
                                             <div class="card-body">
                                                 <h5 class="card-title"> <b className='roomtype'> {item?.RoomType} </b></h5>
                                                 <img src={item?.RoomIMG} className="room_img" />
-                                                <Link to={`updateroom/${item?._id}`}><button type="button" class="btn btn-warning">Update</button></Link>
+                                                <Link to={`updateroom/${item._id}`}><button type="button" class="btn btn-warning">Update</button></Link>
                                                 <Link to={`viewroom/${item?._id}`}><button type="button" class="btn btn-warning">View</button></Link>
-                                                <Link to={`updateroom/${item?._id}`}><button type="button" class="btn btn-warning">Delete</button></Link>
+                                                <Link to={`deleteroom/${item?._id}`}><button type="button" class="btn btn-warning">Delete</button></Link>
                                             </div>
                                         </div>
                                     </div>

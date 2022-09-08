@@ -77,7 +77,7 @@ const NavBar = () => {
             </div>
           </div>
 
-          <button onClick={handleSubmit} className="btn btn-danger " aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
+          <button onClick={handleSubmit} className="btn btn-secondary toggle" aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
             {"Logout"}
           </button>
 

@@ -18,12 +18,6 @@ const Register = () => {
 		pNumber:""
 	});
 
-
-
-
-	//const [pNumber, setpNumberError] = useState('');
-
-
 	const { Fullname, email, password, password2  , pNumber } = formData;
 
 	const onChange = (e) =>
@@ -32,25 +26,6 @@ const Register = () => {
 	const onSubmit = async (e) => {
 
 		e.preventDefault();
-
-		if(Fullname!== ''){
-		}
-			else{
-
-				setFormData('name is Required...')
-
-
-			}
-			if(email !==''){
-
-				const  emailRegex=/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-			}else{
-
-				setFormData('Email Required')
-
-			}
-	
 
 		let validate = ValidateSignUp(formData);
 console.log(validate)

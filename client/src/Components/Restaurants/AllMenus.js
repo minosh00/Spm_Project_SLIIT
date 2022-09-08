@@ -4,9 +4,9 @@
  import Swal from "sweetalert2";
  import Loader from "./Loader";
  import { Link } from "react-router-dom";
-import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+ import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
-
+//ss
 
  const  AllMenus = ()=> {
 
