@@ -4,6 +4,7 @@ import InputField from "./InputFieldComponent/InputField";
 import CommentButton from "./Button/CommentButton";
 import TextArea from "./TextArea/TextArea";
 import axios from "axios";
+import "./styles/AddComment.css"
 
 const AddComment = () => {
   const [email, setEmail] = useState("");
@@ -62,11 +63,11 @@ const AddComment = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full h-screen">
+    <div className="ac-background">
       <div>
         <RateComponent onClick={(value) => setStars(value)} size="large" />
       </div>
-      <div className="flex flex-col space-y-3">
+      <div className="ac-form">
         <InputField
           error={emailError.state}
           helperText={emailError.state && emailError.message}

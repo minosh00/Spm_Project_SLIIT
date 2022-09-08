@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CommentButton from "./Button/CommentButton";
 import Comment from "./Comment/Comment";
+import "./styles/CommentsSection.css"
 
 const CommentsSection = () => {
   const [comments, setComments] = useState([]);
@@ -24,12 +25,12 @@ const CommentsSection = () => {
   }
 
   return (
-    <div className="flex justify-center items-center px-10">
-      <div className="flex justify-end items-end">
+    <div className="cs-background">
+      <div className="cs-add-button">
         <CommentButton label="Add Review" onClick={() => handleRedirect()} size="small" variant="contained" />
       </div>
       {comments.map((comment) => (
-        <div className="my-4">
+        <div className="cs-comment">
           <Comment
             commentText={comment.comment}
             image={comment.userImage}
