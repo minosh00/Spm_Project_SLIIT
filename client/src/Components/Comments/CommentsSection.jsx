@@ -35,7 +35,7 @@ const CommentsSection = () => {
             commentText={comment.comment}
             image={comment.userImage}
             stars={comment.noOfStars}
-            username={comment.userEmail}
+            username={comment.userEmail.split("@")[0]}
             key={comment._id}
           />
         </div>

@@ -10,6 +10,7 @@ const Comment = ({ commentText, username, image, stars }) => {
       </div>
       <div className="comment-card">
         <span className="comment-username">{username}</span>
+        <span className="comment-image">{username.charAt(0).toUpperCase()}</span>
         <span className="comment-text">{commentText}</span>
       </div>
     </div>
