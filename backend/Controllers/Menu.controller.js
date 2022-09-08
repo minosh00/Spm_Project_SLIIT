@@ -35,6 +35,21 @@ const updateMenuByID = async (req, res) => {
 
 
 
+const RemoveFood = async (request,response) => {
+    await Groups.findByIdAndRemove(request.params.id,(error,food) => {
+        if(error){
+            response.status(500).json({ error: error.message });
+        }
+        else{
+            response.status(200).
+            json({
+                success: true,
+                food: food
+            })
+        }
+    })
+}
+
 
 
 
@@ -84,7 +99,7 @@ const getMenuById = async (req, res) => {
 
 
 
-module.exports ={getMenuById,createMenu,updateMenuByID,getAllMenu};
+module.exports ={getMenuById,createMenu,updateMenuByID,getAllMenu,RemoveFood};
 
 
 

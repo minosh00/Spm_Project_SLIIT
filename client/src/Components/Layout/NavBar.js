@@ -63,7 +63,7 @@ const NavBar = () => {
                 </li>
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Restaurants" aria-current="page">Edit  Restaurants</a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllMenus" aria-current="page">Edit  Restaurants</a>
                 </li>
 
                 <li class="nav-item">
@@ -77,7 +77,7 @@ const NavBar = () => {
             </div>
           </div>
 
-          <button onClick={handleSubmit} className="btn btn-secondary toggle" aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
+          <button onClick={handleSubmit} className="btn btn-danger " aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
             {"Logout"}
           </button>
 

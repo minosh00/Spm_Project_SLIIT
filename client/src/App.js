@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+
 import "./App.css";
 import "./Components/Rooms/Rooms.css";
 import React, { Profiler, useEffect } from "react";
@@ -9,9 +9,10 @@ import Register from "./Components/Auth/Register";
 import NavBar from "./Components/Layout/NavBar";
 
 
-import AddMenu from "./Components/Restaurants/AddMenu";
+import AllMenus from "./Components/Restaurants/AllMenus";
 import Home from "./Components/Layout/Main";
-
+import EditMenu from "./Components/Restaurants/EditMenu";
+import AddMenu from "./Components/Restaurants/AddMenu"
 
 //cheeee
 import ViewRooms from './Components/Rooms/ViewRooms';
@@ -23,7 +24,7 @@ import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
 
 
-let isauth = localStorage.getItem('user');
+//let isauth = localStorage.getItem('user');
 
 
 function App() {
@@ -38,9 +39,10 @@ function App() {
 
 
       <Route exact path="/dashboard" element={<Home/>} />
-      <Route  path="/AddMenu" element={<AddMenu/>} />
-               
-       
+      <Route  path="/AllMenus" element={<AllMenus/>} />
+      <Route path="/updateMenuByID/:id" element={<EditMenu />} />    
+      <Route  path="/addMenu" element={<AddMenu/>} />
+
       
               
       
