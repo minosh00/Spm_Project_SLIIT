@@ -28,9 +28,13 @@ dotenv.config();
 app.use("/user",user);
 
 
-
+//food
 app.use("/foods", require("./routes/Menu.Routes"));
 
+//employee
+app.use("/employee", require("./routes/Employee.Routes"));
+
+//room
 app.use('/api', require('./routes/RoomsReservationRoutes'));
 
 // comments API

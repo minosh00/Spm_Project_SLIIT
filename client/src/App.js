@@ -14,6 +14,10 @@ import Home from "./Components/Layout/Main";
 import EditMenu from "./Components/Restaurants/EditMenu";
 import AddMenu from "./Components/Restaurants/AddMenu"
 
+//sadumini
+import AllEmployee from "./Components/Employee/AllEmployee"
+import AddEmployee from "./Components/Employee/AddEmployee"
+
 
 //cheee
 import ViewRooms from './Components/Rooms/ViewRooms';
@@ -21,9 +25,6 @@ import AddRooms from './Components/Rooms/AddRooms';
 import MainRoom from './Components/Rooms/MainRoom';
 import UpdateRoom from './Components/Rooms/UpdateRoom';
 
-
-import CommentsSection from './Components/Comments/CommentsSection';
-import AddComment from './Components/Comments/AddComment';
 
 let isauth = localStorage.getItem('user');
 
@@ -38,8 +39,9 @@ function App() {
       <Route exact path="/register" element={<Register/>} />
       
 
-    
- 
+      <Route exact path="/AllEmployee" element={<AllEmployee/>} />
+      <Route exact path="/addemployee" element={<AddEmployee/>} />
+
       <Route exact path="/dashboard" element={<Home/>} />
       <Route  path="/AllMenus" element={<AllMenus/>} />
       <Route path="/updateMenuByID/:id" element={<EditMenu />} />    
@@ -51,10 +53,6 @@ function App() {
       <Route path="/addroom" element={<AddRooms />} />
       <Route path="/viewroom" element={<ViewRooms />} />
       <Route path="/mainroom/updateroom/:id" element={<UpdateRoom />} />
-
-
-      <Route path="/comments-section" element={<CommentsSection />} />
-      <Route path="/comments-section/create" element={<AddComment />} />
 
       </Routes>
     </Router>
