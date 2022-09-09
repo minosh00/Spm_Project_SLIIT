@@ -8,7 +8,7 @@ import Landingscreen from './Components/Landingscreen';
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
 import NavBar from "./Components/Layout/NavBar";
-
+import Footer from "./Components/Layout/Footer";
 import AllMenus from "./Components/Restaurants/AllMenus";
 import Home from "./Components/Layout/Main";
 import EditMenu from "./Components/Restaurants/EditMenu";
@@ -54,7 +54,10 @@ function App() {
       <Route path="/viewroom" element={<ViewRooms />} />
       <Route path="/mainroom/updateroom/:id" element={<UpdateRoom />} />
 
+    
       </Routes>
+      <br></br>
+      <Footer/>
     </Router>
 
   );

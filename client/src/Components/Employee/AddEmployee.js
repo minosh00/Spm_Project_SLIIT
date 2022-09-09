@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./Employee.css";
 import logo from "../../images/menuss.png";
+import { ValidateAddNewMenu } from "./Validation";
 
 const AddEmployee = () => {
   const [fname, setfname] = useState("");
@@ -13,6 +15,8 @@ const AddEmployee = () => {
   const [HomeAddress, setHomeAddress] = useState("");
   const [email, setemail] = useState("");
   const [Pnumber, setPnumber] = useState("");
+  const navigate = useNavigate();
+
 
   const changeOnClick = (f) => {
     const Employee = {
@@ -24,11 +28,24 @@ const AddEmployee = () => {
       email,
       Pnumber,
     };
+    let validate = ValidateAddNewMenu(Employee);
+    let msg = validate?.message;
+
+    if(validate.status == false)
+    {
+        window.alert(`${msg}`);
+     
+    } else {
+       
 
     axios.post("http://localhost:5000/employee/createEmployee", Employee);
 
     Swal.fire("Congrats", " New Employee Added  successfully", "success");
+
+    navigate("/AllEmployee");
   };
+}
+
   return (
     <div>
       <div>
