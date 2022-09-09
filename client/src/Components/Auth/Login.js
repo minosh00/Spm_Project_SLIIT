@@ -22,12 +22,13 @@ const Login = () => {
 	const onSubmit = async (e) => {
 
 		e.preventDefault();
-		console.log("data",formData)
+		console.log("data",formData.email)
 		let data = await LoginCustomer(formData);
-		console.log("data", data?.data);
+		console.log("data", data.data.email);
 		if (data?.data?.userRole) {
 			localStorage.setItem("token", data?.data?.token);
 			localStorage.setItem("userRole", data?.data?.userRole);
+			localStorage.setItem("email", formData.email);
 			localStorage.setItem("user", data?.data?.user);
 			navigate("/dashboard");
 		}

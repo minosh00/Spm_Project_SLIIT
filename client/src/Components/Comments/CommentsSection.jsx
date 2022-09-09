@@ -56,7 +56,7 @@ const CommentsSection = () => {
             commentText={comment.comment}
             image={comment.userImage}
             stars={comment.noOfStars}
-            username={comment.userEmail.split("@")[0]}
+            username={comment.userEmail}
             key={comment._id}
             onDelete={() => deleteComment(comment._id)}
             onEdit={() => window.location.href = `/comments-section/edit/${comment._id}`}
