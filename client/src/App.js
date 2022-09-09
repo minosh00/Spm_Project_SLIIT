@@ -21,6 +21,7 @@ import AddRooms from './Components/Rooms/ViewRooms';
 import ViewRooms from './Components/Rooms/AddRooms';
 import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
+import EditComment from './Components/Comments/EditComment';
 
 
 let isauth = localStorage.getItem('user');
@@ -46,6 +47,7 @@ function App() {
 
       <Route path="/comments-section" element={<CommentsSection />} />
       <Route path="/comments-section/create" element={<AddComment />} />
+      <Route path="/comments-section/edit/:id" element={<EditComment />} />
 
       </Routes>
     </Router>

@@ -5,6 +5,7 @@ export default function InputField({
   variant = "outlined",
   type = "text",
   label = "label",
+  value,
   id,
   error = false,
   disabled = false,
@@ -22,6 +23,7 @@ export default function InputField({
         helperText={helperText}
         id={id ? id : variant}
         label={label}
+        value={value&& value}
         variant={variant}
         size={size}
         sx={{ width: "100%" }}
