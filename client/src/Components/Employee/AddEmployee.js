@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import "./Employee.css";
 import logo from "../../images/menuss.png";
 
 const AddEmployee = () => {
@@ -69,34 +70,11 @@ const AddEmployee = () => {
                     />
                 </div>
                 <div class="col-md-6">
-                  <label for="" class="form-label">Gender</label>
-                  <div className='row py-1 px-2'>
-                    <div class="form-check col-md-4">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          onChange={(f) => setgender(f.target.value)}
-                          value="male"
-                          id="flexCheckDefault"
-                        />
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Male
-                        </label>
-                    </div>
-                    <div class="form-check col-md-4">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          onChange={(f) => setgender(f.target.value)}
-                          value="female"
-                          id="flexCheckChecked"
-                          checked
-                        />
-                        <label class="form-check-label" for="flexCheckChecked">
-                          Female
-                        </label>
-                    </div>
-                  </div>
+                  <label for="" class="form-label">{" "}Gender{" "}</label>
+                  <select class="form-select form-select-sm py-1" defaultValue="Select Gender" onChange={(f) => setgender(f.target.value)}>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
                 </div>
               </div>
               <div className='row py-3'>
