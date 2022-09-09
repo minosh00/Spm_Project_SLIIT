@@ -66,7 +66,7 @@ const  AllEmployee = ()=> {
              Employee.filter((users)=>{
                if(serachItem ==""){
                      return users
-               }else if(users.fName.toLowerCase().includes(serachItem.toLowerCase())){
+               }else if(users.fname.toLowerCase().includes(serachItem.toLowerCase())){
             
                  return users
     }   }).map((user) => {
