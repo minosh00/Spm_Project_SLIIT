@@ -2,59 +2,60 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { useParams } from 'react-router-dom';
 
-const UpdateRoom = (props) => {
+const UpdateRoom = () => {
     const [room, setRoom] = useState({
         RoomType: "",
         RoomIMG: "",
         Description: "",
-        Features: ""
+        Features: "",
     });
 
     const { id } = useParams("");
 
+    useEffect(() => {
+        function getRoom() {
+            axios
+                .get(`http://localhost:5000/api/rooms/${id}`)
+                .then((res) => {
+                    setRoom(res.data)
+                })
+                .catch((err) => {
+                    alert(err.message)
+                })
+        }
+        getRoom();
+    }, []);
+
     function UpadateRoom(e) {
         e.preventDefault();
-        axios.put(`http://localhost:5000/api/rooms/${id}`, room)
-            .then(res => {
-                console.log(res.data)
-                alert("Room Updated Successfully")
-                props.history.push('/data')
-            }).catch((err) => {
+        const updateItem = room;
+        axios.put(`http://localhost:5000/api/rooms/${id}`, updateItem)
+            .then(() => {
+                alert('Updated')
+            })
+            .catch((err) => {
                 alert(err)
-                console.error(err)
             })
     }
 
-
-    useEffect(() => {
-        const getdata = async () => {
-            try {
-                const res = await axios.get(`http://localhost:5000/api/rooms/${id}`)
-                setRoom(res.data);
-                console.log('render');
-            } catch (err) {
-                console.log(err);
+    function handleChange(e) {
+        const { name, value } = e.target;
+        setRoom((preValue) => {
+            return {
+                ...preValue,
+                [name]: value
             }
-        }
-        getdata()
-    }, []);
-
+        })
+    }
 
     return (
         <div>
             <form onSubmit={UpadateRoom}>
-                <input type="text" className="form-control" id="RoomType" placeholder="Enter Name"
-                    value={room.RoomType}
-                    onChange={(e) => { setRoom({ name: e.target.value }) }}></input>
-                    <input type="text" className="form-control" id="RoomIMG" placeholder="Enter Name"
-                    value={room.RoomIMG}
-                    onChange={(e) => { setRoom({ name: e.target.value }) }}></input>
-                    <input type="text" className="form-control" id="Description" placeholder="Enter Name"
-                    value={room.Description}
-                    onChange={(e) => { setRoom({ name: e.target.value }) }}></input>
-                    <input type="text" className="form-control" id="Features" placeholder="Enter Name"
-                    value={room.Features}
-                    onChange={(e) => { setRoom({ name: e.target.value }) }}></input>
+                <input type='text' name="RoomType" onChange={handleChange} value={room.RoomType} placeholder='Room Type' />
+                <input type='text' name="RoomIMG" onChange={handleChange} value={room.RoomIMG} placeholder='Room Type' />
+                <input type='text' name="Description" onChange={handleChange} value={room.Description} placeholder='Room Type' />
+                <input type='text' name="Features" onChange={handleChange} value={room.Features} placeholder='Room Type' />
+                <button type='submit'>Update Room</button>
             </form>
 
         </div>

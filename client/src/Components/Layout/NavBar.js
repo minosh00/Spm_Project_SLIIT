@@ -63,7 +63,7 @@ const NavBar = () => {
                 </li>
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Restaurants" aria-current="page">Edit  Restaurants</a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllMenus" aria-current="page">Edit  Restaurants</a>
                 </li>
 
                 <li class="nav-item">
@@ -71,7 +71,7 @@ const NavBar = () => {
 
                 </li>
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">Edit  Employee</a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllEmployee" aria-current="page">Edit  Employee</a>
                 </li>
               </div>
             </div>
