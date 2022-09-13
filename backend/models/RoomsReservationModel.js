@@ -2,33 +2,39 @@ const mongoose = require('mongoose')
 
 //create Rooms Reservation Schema
 const RoomsReservationSchema = new mongoose.Schema({
-    RoomID: {
-        type: String,
-        required: true,
-        unique: true
-    },
-
-    RoomType: {
-        type: String,
-        required: true,
-        unique: true
-    },
-
-    RoomIMG: {
+    name: {
         type: String,
         required: true
     },
 
-    Description: {
+    maxcount: {
+        type: Number,
+        required: true
+    },
+
+    rentperday: {
+        type: Number,
+        required: true
+    },
+
+    imageurls: [],
+
+    currentbookings: [],
+
+    type: {
         type: String,
         required: true
     },
 
-    Features: {
+    features: {
+        type: String,
+        required: true
+    },
+
+    description: {
         type: String,
         required: true
     }
-
 }, {
     timestamps: true
 });
