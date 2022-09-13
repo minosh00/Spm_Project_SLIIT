@@ -1,6 +1,4 @@
-  
-
- import React from 'react';
+import React from 'react';
 import {
   MDBFooter,
   MDBContainer,
@@ -10,9 +8,7 @@ import {
   MDBBtn
 } from 'mdb-react-ui-kit';
 
-
-
-    const Footer = () => {
+const Footer = () => {
   return (
     <MDBFooter className='bg-dark text-center text-white'>
       <MDBContainer className='p-4 pb-0'>
@@ -45,11 +41,11 @@ import {
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
         © 2020 Copyright:
         <a className='text-white' href='https://mdbootstrap.com/'>
-         Wijaya Beach Hotel
+          Wijaya Beach Hotel
         </a>
       </div>
     </MDBFooter>
   );
 }
 
-export default  Footer;
+export default Footer;

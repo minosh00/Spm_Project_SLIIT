@@ -10,4 +10,7 @@ router.route('/rooms/:id')
     .put(RoomsReservationController.updateRooms_Reservation)
     .delete(RoomsReservationController.deleteRooms_Reservation);
 
+router.route('/search/:type')
+    .get(RoomsReservationController.getRooms_Type);
+
 module.exports = router;
