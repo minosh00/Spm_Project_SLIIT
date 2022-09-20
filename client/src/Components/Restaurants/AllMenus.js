@@ -108,7 +108,7 @@
           <td> Rs: {user.price}</td>
           <td>
           <h5><Link to ={{pathname:`/updateMenuByID/${user?._id}`}}><span   type="submit" class="badge rounded-pill badge-warning">Update</span></Link></h5> 
-          <h5><span  onClick={()=>removefood(user._id)}  type="submit" class="badge rounded-pill badge-danger">Delete</span></h5> 
+          <h5><span  onClick={()=>removefood(user?._id)}  type="submit" class="badge rounded-pill badge-danger">Delete</span></h5> 
           </td>
         </tr>
            );

@@ -37,7 +37,7 @@ const AddMenu = () => {
         Swal.fire({
             toast: true,
             icon: 'warning',
-            html: `<span>${msg}</span>`,
+            html:alert(`${msg}`),
             animation: true,
             position: 'top-right',
             showConfirmButton: false,

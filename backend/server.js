@@ -31,6 +31,10 @@ app.use("/user",user);
 //food
 app.use("/foods", require("./routes/Menu.Routes"));
 
+//food
+app.use("/room", require("./routes/Room.Routes"));
+
+
 //employee
 app.use("/employee", require("./routes/Employee.Routes"));
 
