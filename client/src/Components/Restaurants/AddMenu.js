@@ -29,7 +29,7 @@ const AddMenu = () => {
         images,
    
     };
-
+//test
     let validate = ValidateAddNewMenu(addmenu);
     let msg = validate?.message;
     if(validate.status == false)
