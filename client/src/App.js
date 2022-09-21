@@ -29,6 +29,10 @@ import AddRoom from './Components/Room/AddRoom';
 import UpdateRooms from './Components/Room/UpdateRooms';
 import DisplayOneRoom from './Components/Room/DisplayOneRoom';
 
+
+//mihiranga 
+import CommentsSection from './Components/Comments/CommentsSection';
+
 let isauth = localStorage.getItem('user');
 
 
@@ -67,7 +71,7 @@ function App() {
 
      
   
-
+      <Route path="/CommentsSection" element={<CommentsSection />} />
       
 
       <Route path="/AddRoom" element={<AddRoom />} />

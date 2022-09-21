@@ -29,6 +29,7 @@ const CommentsSection = () => {
       </div>
       {comments.map((comment) => (
         <div className="my-4">
+          <br></br>
           <Comment
             commentText={comment.comment}
             image={comment.userImage}
