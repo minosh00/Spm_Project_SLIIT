@@ -32,6 +32,8 @@ import DisplayOneRoom from './Components/Room/DisplayOneRoom';
 
 //mihiranga 
 import CommentsSection from './Components/Comments/CommentsSection';
+import AddComment from './Components/Comments/AddComment';
+import EditComment from './Components/Comments/EditComment';
 
 let isauth = localStorage.getItem('user');
 
@@ -71,8 +73,10 @@ function App() {
 
      
   
-      <Route path="/CommentsSection" element={<CommentsSection />} />
-      
+      <Route path="/comments-section" element={<CommentsSection />} />
+      <Route path="/comments-section/create" element={<AddComment />} />
+      <Route path="/comments-section/edit/:id" element={<EditComment />} />
+   
 
       <Route path="/AddRoom" element={<AddRoom />} />
       <Route path="/updateRoomsByID/:id" element={<UpdateRooms />} /> 

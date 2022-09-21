@@ -53,7 +53,7 @@ const NavBar = () => {
                 </li>
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">Halls</a>
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/comments-section" aria-current="page">comment section </a>
                 </li>
 
 

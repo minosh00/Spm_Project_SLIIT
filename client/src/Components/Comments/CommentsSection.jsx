@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CommentButton from "./Button/CommentButton";
 import Comment from "./Comment/Comment";
+import "./styles/CommentsSection.css";
 
 const CommentsSection = () => {
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
+  const getComments = () => {
     axios
       .get("http://localhost:5000/api/comments")
       .then((res) => {
@@ -16,26 +17,49 @@ const CommentsSection = () => {
       .catch((e) => {
         console.error(e.message);
       });
+  };
+
+  const deleteComment = (id) => {
+    axios
+    .delete(`http://localhost:5000/api/comments/${id}`)
+    .then((_res) => {
+      alert('Done!');
+      getComments();
+    })
+    .catch((e) => {
+      alert('Cannot Delete!')
+      console.error(e.message);
+    });
+  }
+
+  useEffect(() => {
+    getComments();
   }, []);
 
   const handleRedirect = () => {
-    window.location.href = '/comments-section/create'
-  }
+    window.location.href = "/comments-section/create";
+  };
 
   return (
-    <div className="flex justify-center items-center px-10">
-      <div className="flex justify-end items-end">
-        <CommentButton onClick={() => handleRedirect} size="small" variant="contained" />
+    <div className="cs-background">
+      <div className="cs-add-button">
+        <CommentButton
+          label="Add Review"
+          onClick={() => handleRedirect()}
+          size="small"
+          variant="contained"
+        />
       </div>
       {comments.map((comment) => (
-        <div className="my-4">
-          <br></br>
+        <div key={comment._id} className="cs-comment">
           <Comment
             commentText={comment.comment}
             image={comment.userImage}
             stars={comment.noOfStars}
             username={comment.userEmail}
             key={comment._id}
+            onDelete={() => deleteComment(comment._id)}
+            onEdit={() => window.location.href = `/comments-section/edit/${comment._id}`}
           />
         </div>
       ))}

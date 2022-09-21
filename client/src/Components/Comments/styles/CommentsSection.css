@@ -1,0 +1,15 @@
+.cs-background{
+    display: flex;
+    flex-direction: column;
+    padding: 12px 20px;
+}
+
+.cs-add-button{
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.cs-comment{
+    padding: 16px 0px;
+}
