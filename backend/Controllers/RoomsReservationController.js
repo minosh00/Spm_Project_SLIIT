@@ -33,12 +33,12 @@ const RoomsReservationController = {
   //add Research_Topic
   createRooms_DescriptionReservation: async (req, res) => {
     try {
-      const { RoomID, RoomType, RoomIMG, Description, Features } = req.body;
+      const { name, maxcount, rentperday,  imageurls, currentbookings, type, features,  description } = req.body;
 
-      const rooms = await Rooms_Reservation.findOne({ RoomID, RoomType, RoomIMG, Description, Features })
+      const rooms = await Rooms_Reservation.findOne({ name, maxcount, rentperday,  imageurls, currentbookings, type, features,  description })
       if (rooms) return res.status(400).json({ msg: "This Room already exists." })
 
-      const newRooms_Reservation = new Rooms_Reservation({ RoomID, RoomType, RoomIMG, Description, Features })
+      const newRooms_Reservation = new Rooms_Reservation({ name, maxcount, rentperday,  imageurls, currentbookings, type, features,  description })
 
       await newRooms_Reservation.save()
       res.json({ msg: "Created a new Room" })
@@ -51,8 +51,8 @@ const RoomsReservationController = {
   //update Research Topic
   updateRooms_Reservation: async (req, res) => {
     try {
-      const { RoomType, RoomIMG, Description, Features } = req.body;
-      await Rooms_Reservation.findOneAndUpdate({ _id: req.params.id }, { RoomType, RoomIMG, Description, Features })
+      const { name, maxcount, rentperday,  imageurls, currentbookings, type, features,  description } = req.body;
+      await Rooms_Reservation.findOneAndUpdate({ _id: req.params.id }, { name, maxcount, rentperday,  imageurls, currentbookings, type, features,  description })
 
       res.json({ msg: "Updated Room Details" })
 
@@ -71,16 +71,16 @@ const RoomsReservationController = {
     }
   },
 
-  //   //get details by groupID
-  //   getRooms_Reservation: async (req, res) => {
-  //     try {
-  //       let gid = req.params.gid;
-  //       const rtopics = await Research_Topic.find({ gid: gid });
-  //       res.status(200).json(rtopics);
-  //     } catch (err) {
-  //       res.json(err);
-  //     }
-  //   },
+    //get details by type
+    getRooms_Type: async (req, res) => {
+      try {
+        let type = req.params.type;
+        const rooms = await Rooms_Reservation.find({ type: type });
+        res.status(200).json(rooms);
+      } catch (err) {
+        res.json(err);
+      }
+    },
 
   //   //get details by Interest
   //   getDetailsbyInterest: async (req, res) => {
