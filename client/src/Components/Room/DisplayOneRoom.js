@@ -1,13 +1,9 @@
- 
-
-
- 
 import Swal from "sweetalert2";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getRoomsById, updateRoomsByID1 } from "./services/Room";
-import logo from '../../images/hotel-room.jpg'
+import { MDBBtn } from 'mdb-react-ui-kit'
 
 const DisplayOneRoom = () => {
 
@@ -35,32 +31,26 @@ const DisplayOneRoom = () => {
     setrentperday(e.target.value);
   };
 
-  const handletype= (e) => {
+  const handletype = (e) => {
     settype(e.target.value);
   };
 
   const handleimageurls = (e) => {
     setimageurls(e.target.value);
   };
- 
 
-  const handlefeaturess= (e) => {
+
+  const handlefeaturess = (e) => {
     setfeatures(e.target.value);
   };
 
   const handledescription = (e) => {
     setdescription(e.target.value);
   };
- 
-
-
-
 
   const GetData = async () => {
-
     let data = await getRoomsById(id);
-    console.log("Update rooms", data);
-
+    console.log("Update Rooms", data);
     setname(data?.data?.name);
     setmaxcount(data?.data?.maxcount);
     setrentperday(data?.data?.rentperday);
@@ -79,130 +69,84 @@ const DisplayOneRoom = () => {
     e.preventDefault();
     let newdata = {
 
-        name:name,
-        maxcount:maxcount,
-        rentperday:rentperday,
-        description  :description,
-        type:type,
-        imageurls  :imageurls,
-        features:features,  
-           
+      name: name,
+      maxcount: maxcount,
+      rentperday: rentperday,
+      description: description,
+      type: type,
+      imageurls: imageurls,
+      features: features,
+
     };
 
     let data = await updateRoomsByID1(id, newdata);
     console.log("Update success ", data);
     if (!data?.data?.foodName) {
-      {   Swal.fire('Congrats' , 'Update room  successfully ' , 'success')
+      {
+        Swal.fire('Congrats', 'Update Room Successfully', 'success')
+        navigate("/mainroom");
+      }
 
-      navigate("");
-   }
-
-
-    
     } else {
-
-      {   Swal.fire('Congrats' , 'Update room successfully ' , 'success')
-
-      navigate("");
-			  }
-     
-
-     
-    
+      {
+        Swal.fire('Congrats', 'Update Room Unsuccessfully', 'success')
+        navigate("/mainroom");
+      }
     }
   };
 
   return (
 
-    <div style={{backgroundColor:""}}>
-			      
-    <br/>
+    <div>
+      <div className="container shadow border border-5 my-5 mx-auto w-50">
+        <div className="col p-3">
+          <h3 className=" fw-bolder mb-4"><center>View Room Details</center></h3>
+          <form>
 
-<div className="container-fluid px-1 px-md-7 px-lg-1 px-xl-5 py-10 mx-auto " style={{backgroundColor:""}}>
+            <div className="row py-3">
+              <div className="col-md-6">
+                <label for="name"> Room Name </label>
+                <input type="text" class="form-control" value={name} placeholder="room name " />
+              </div>
+              <div class="col-md-6">
+                <label for="type"> Room Type  </label>
+                <input class="form-control" id="type" value={type} placeholder="Enter Room Type" />
+              </div>
 
-               <div className="card card0 border-0" style={{backgroundColor:""}}>
-           
-                 <br></br>
-           
-                   <div className="row d-flex" >
-                  
-                       <div className="col-lg-6" >
-                       <h2 style={{color:"red" , fontSize:"40px" , marginLeft:"10%"}} >display   Room  infromation  </h2>
-                           <div className="card1 pb-5">
-                      
-                               <div className="" > </div>
-                           </div>
+            </div>
 
-                   
-                       </div>
+            <div className="row py-3">
+              <div class="col-md-3">
+                <label for="count"> Max Count </label>
+                <input class="form-control" type="number" value={maxcount} placeholder="Enter Max Count" />
+              </div>
+              <div class="col-md-4">
+                <label for="rent">  Rent Per day (LKR) </label>
+                <input class="form-control" type="number" value={rentperday} placeholder="Enter Rent Per Day" />
+              </div>
+              <div class="col-md-5">
+                <label for="img">  Image URL </label>
+                <input class="form-control" id="url" value={imageurls} placeholder="Enter IMG Url" />
+              </div>
+            </div>
 
-                       
-                       <div className="col-lg-6">
-                   
-                           <div className="col-lg-6" >
-                           <form  encType="">
-                       
-                           <br></br>
-                        
-                               <div class="form-floating mb-3">
-                               <label for="" style={{color:"" , fontSize:"20px"}}>  room  Name:   </label><br></br><br></br>
-                                   <input type="text" disabled="disabled"  class="form-control" id="floatingInput"  style={{width:"190%"}}      value={name}      required placeholder="  " />
-                               
-                               </div>
-                           
+            <div class="col-md-12">
+              <label for="features"> Features </label>
+              <textarea class="form-control" type="text" value={features} placeholder="Enter Features" rows="3" /> <br />
+            </div>
+            <div class="col-md-12">
+              <label for="floatingPassword"  >Description   </label>
+              <textarea class="form-control" type="text" value={description} placeholder="Enter Description" rows="6" />
+            </div> <br />
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a><Link to="/"><MDBBtn rounded color="warning" type="submit" className="btn btn-success">Back to Home  </MDBBtn></Link></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-                               <div class="form-floating mb-3"><br></br><br></br>
-                               <label for="floatingInput"style={{color:"" , fontSize:"20px"}} >  rentnper day </label>
-                                
-                                   <input type="text" disabled="disabled"  class="form-control" id="exampleFormControlTextarea3"  style={{width:"190%"}}     value={rentperday}  required  placeholder="  Restaurants Type"  >
-                                   </input>
-
-                               </div>
-
-                              
-                               
-                               
-                               <div class="form-floating mb-3"><br></br><br></br>
-                               <label for="floatingInput" style={{color:"" , fontSize:"20px"}} >  Description </label>
-                                
-                                   <textarea class="form-control" disabled="disabled"  id="exampleFormControlTextarea3"   style={{width:"190%"}}    value={description}
-
- required  placeholder=" food Description"    rows="6">
-                                   </textarea>
-
-                               </div>
-
-
-                             
-
-
-
-
-
-
-
-
-                          
-                               <div className="row mb-7 px-6">
-                                   <a ><Link  to =""><button  type="submit"   style={{ fontSize:"15px"  }}    className="btn btn-success">Back to main    </button></Link></a>
-
-                               </div>
-                               </form>
-                               <div>
-                                 
-                           
-                                   
-                               </div>
-                               
-                           </div>
-                       </div>
-                   </div>
-                 
-           
-               </div>
-           </div>
-           </div>
-  );
+  )
 };
 
 export default DisplayOneRoom;

@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
-import Loader from "../Restaurants/Loader";
+import { Button, Modal, Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-
 
 const AllRooms = () => {
 
-    
-  const [serachItem,setserachItem] =useState([]);
+  const [serachItem, setserachItem] = useState([]);
   const [users, setusers] = useState();
   const [loading, setloading] = useState(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-
-
-  
   useEffect(async () => {
     try {
       const data = await (
@@ -29,90 +26,98 @@ const AllRooms = () => {
   }, []);
 
 
-
-  const removeRoom = id =>{
-    axios.delete(`http://localhost:5000/room/RemoveRooms/${id}`)
-    .then(res => 
-      
-      {Swal.fire('Congrats' , ' remove Room successfully ' , 'success')
-  
-  }    )
-  setusers(users.filter(elem=>elem._id !== id))
+  const deleteRoom = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:5000/room/RemoveRooms/${id}`)
+      const newRoom = users.filter(user => user._id !== id);
+      setusers(newRoom);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  
+
   return (
-
-
-
-    <div className="">
-        
-        <br></br>   <br></br>   <br></br>
+    <div className="container"><br /><br /><br />
+      <div className="row">
         <div class="input-group">
-  <div className="col-md-9">
-
-  <input type="search" class="form-control" style={{width:"30%", marginLeft:"60%" }} placeholder="Search by room Name  " aria-label="Search"  onChange={event=>{setserachItem(event.target.value)}} 
-    aria-describedby="search-addon" />
-  </div>
-</div>
-<br></br><br></br>
-        
-        
-        
-<div  className="container">
-
-
-<div className="container">
-    <div className="">
-                  <div className="">
-                  
-                          <div className="">
-                            
-                          <div className="row">
-      <br></br><br></br>
-
-      {users &&
-              users.filter((users)=>{
-                if(serachItem ==""){
-                      return users
-                }else if(users.name.toLowerCase().includes(serachItem.toLowerCase())){
-             
-                  return users
-   }   })
-      
-      .map((user , key) => (
-        <div className="col-md-3 card me-5 mt-2 p-1 mb-2  d-flex"  key={1}><br></br>
-          <img src={user.imageurls} alt="" marginLeft={"200px"} width={"40%"} height={"40%"} />
-       
-
-     
-          <div className="p-2">
-          <h4> room ID  :{key+1}</h4>
-          <h4> room name  :{user.name}</h4>
-            <h5>  Type :{user.type}</h5>
-
-            <a
-           className="button"
-           style={{ marginLeft: "10%" }}
-           href={user.maxcount}
-         >
-            <Link to ={{pathname:`/updateRoomsByID1/${user?._id}`}}><span   type="submit" class="badge rounded-pill badge-warning">view info</span></Link><br></br><br></br>
-           <Link to ={{pathname:`/updateRoomsByID/${user?._id}`}}><span   type="submit" class="badge rounded-pill badge-warning">Update</span></Link> <br></br><br></br>
-           <span  onClick={()=>removeRoom(user._id)}  type="submit" class="badge rounded-pill badge-danger">remove</span><br></br>
-         </a>
+          <div className="col-md-6 mx-auto">
+            <input type="search" class="form-control" placeholder="Search by Room Name  " aria-label="Search" onChange={event => { setserachItem(event.target.value) }}
+              aria-describedby="search-addon" />
           </div>
         </div>
-      ))}
-    </div>
-                          </div>
-                      </div>
-                  </div>
-                  </div>
+        <br></br><br></br>
 
+
+        <div className="">
+          <div className="container">
+            {users &&
+              users.filter((users) => {
+                if (serachItem == "") {
+                  return users
+                } else if (users.type.toLowerCase().includes(serachItem.toLowerCase())) {
+                  return users
+                }
+              })
+
+                .map((user) => (
+                  <div className="row bs" key={1}><br></br>
+                    <h3> {user.name}</h3> <br /><br />
+                    <div className="col-md-6">
+                      <img src={user.imageurls[0]} className="smallimg" alt="" />
+                    </div>
+
+                    <div className="col-md-6">
+                      <h5> <b>{user.type} Room</b></h5> <br />
+                      <h5> <b>Features:</b> </h5>
+                      <p className="feat">{user.features}</p> <br />
+                      <h6> <b>Rent Per Day:</b> LKR {user.rentperday}/=</h6> <br />
+                      <h6> <b>Max Count:</b> {user.maxcount}</h6>
+                      {/* <h5> Features: {user.features}</h5>
+                       */}
+
+                      <Modal show={show} onHide={handleClose}>
+                        <Modal.Header>
+                          <Modal.Title><center><b>{user.type} Room</b></center></Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+
+                          <Carousel prevLabel='' nextLabel=''>
+                            {
+                              user.imageurls.map(url => {
+                                return <Carousel.Item>
+                                  <img className='d-block w-100 bigimg' src={url} />
+                                  <h5> {user.description}</h5>
+                                </Carousel.Item>
+                              })
+                            }
+                          </Carousel>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button variant="secondary" onClick={handleClose}>
+                            Close
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+
+                      <br /> <br />
+                      <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button className='btn btn-warning' onClick={handleShow}>View Details</button>
+                        <Link to={`/updateRoomsByID1/${user?._id}`}>
+                          <button className='btn btn-primary'>Book Room</button>
+                        </Link>
+                        <Link to={`/updateRoomsByID/${user?._id}`}>
+                          <button className='btn btn-success'>Update Room</button>
+                        </Link>
+                        <button className='btn btn-danger' onClick={() => deleteRoom(user._id)}>Delete Room</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+          </div>
         </div>
-        
-        
-        </div>
+      </div>
+    </div>
   )
 }
 
