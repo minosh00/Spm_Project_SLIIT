@@ -48,6 +48,10 @@ const AllRooms = () => {
         </div>
         <br></br><br></br>
 
+        <Link to={'/AddRoom'}>
+          <button type="submit" class="btn btn-secondary d-flex">Add New Room</button>
+        </Link>
+
 
         <div className="">
           <div className="container">

@@ -19,9 +19,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 //import Routes 
-app.use("/user", user);
-const user = require("./Routes/userRoutes");
-
+app.use("/user",  require("./routes/Userroutes"));
 app.use("/foods", require("./routes/Menu.Routes"));
 app.use("/room", require("./routes/Room.Routes"));
 app.use("/employee", require("./routes/Employee.Routes"));
@@ -37,7 +35,6 @@ mongoose.connect(
   .then(() => {
     console.log("Mongo DB Connected Successfully");
   })
-
   .catch((err) => console.log("DB Connection Failed", err));
 
 app.listen(PORT, () => {
