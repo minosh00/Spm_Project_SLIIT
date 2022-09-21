@@ -28,10 +28,21 @@ dotenv.config();
 app.use("/user",user);
 
 
-const foodRoute = require('./routes/Food.Route');
-app.use('/foods',foodRoute());
+//food
+app.use("/foods", require("./routes/Menu.Routes"));
 
+//food
+app.use("/room", require("./routes/Room.Routes"));
+
+
+//employee
+app.use("/employee", require("./routes/Employee.Routes"));
+
+//room
 app.use('/api', require('./routes/RoomsReservationRoutes'));
+
+// comments API
+app.use('/api', require('./routes/Comment.Routes'));
 
 //app.use("/fooo", require("./Routes/Food.Route"));
 
