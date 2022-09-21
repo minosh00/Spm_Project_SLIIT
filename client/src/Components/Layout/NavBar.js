@@ -49,7 +49,7 @@ const NavBar = () => {
                   <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">   Booking Room</a>
                 </li>
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">Restaurants</a>
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Displaymenus" aria-current="page">Restaurants</a>
                 </li>
 
                 <li class="nav-item">

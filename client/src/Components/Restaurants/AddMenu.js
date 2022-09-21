@@ -27,7 +27,7 @@ const AddMenu = () => {
         RestaurantsType,
         Description,
         images,
-  
+   
     };
 
     let validate = ValidateAddNewMenu(addmenu);
