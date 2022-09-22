@@ -61,7 +61,7 @@ function App() {
         <Route path="/mainroom" element={<MainRoom />} />
         <Route path="/allroom" element={<AllRooms />} />
         <Route path="/updateRoomsByID/:id" element={<UpdateRooms />} />
-        <Route path="/updateRoomsByID1/:id" element={<DisplayOneRoom />} />
+        <Route path="/updateRoomsByID1/:id/:fromdate/:todate" element={<DisplayOneRoom />} />
 
       </Routes>
       <br></br>
