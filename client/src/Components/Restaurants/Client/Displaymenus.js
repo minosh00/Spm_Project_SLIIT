@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 import {
     Badge,
     Card,
@@ -31,7 +32,9 @@ const Displaymenus = () => {
   const addDataToCart = (e,user)=>{
       e.preventDefault();
       array.push(user);
-      alert("Add to Cart  sucessfully  ")
+  
+    
+    alert("Add to Cart  successfully  ")
   }
 
   const gotoCart = (e)=>{
@@ -67,7 +70,9 @@ const Displaymenus = () => {
 <br></br><br></br>
         <center>
         <h1><b>Food Menus</b></h1>
-   
+        <center>
+              <button className='btn btn-success' onClick={(e)=>gotoCart(e)}> View Cart </button>
+            </center>
 
         </center>
         
@@ -75,7 +80,7 @@ const Displaymenus = () => {
             <AddToCart data={cartData}/> 
           : 
 
-            <section class="cards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: '30px' }}>
+            <div class="col-11 col-md-6 col-lg-3 mx-0 mb-4" >
 
             {users &&
                     users.filter((users)=>{
@@ -89,7 +94,7 @@ const Displaymenus = () => {
                   return (
 
 
-                <article class="card" style={{ flex: '0 1 24%', borderWidth: '2px', marginBottom: '20px' }}>
+                <article class="card" style={{ flex: '0 1 20%', borderWidth: '2px', marginBottom: '10px' }}>
                   <img src={user.images} alt='No Image Added...' style={{ width: '100%', height: 'auto' }} />
                   <h4>{user.foodName}</h4>
                   <p><b>LKR. {user.price}</b></p>
@@ -104,11 +109,9 @@ const Displaymenus = () => {
           })}
 
 
-            <center>
-              <button className='btn btn-success' onClick={(e)=>gotoCart(e)}> View Cart </button>
-            </center>
+          
 
-            </section>
+            </div>
         }
 
 
