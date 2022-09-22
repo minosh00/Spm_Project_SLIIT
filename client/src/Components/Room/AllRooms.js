@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Modal, Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { DatePicker, Space } from 'antd';
+import moment from 'moment'
 
 const AllRooms = () => {
-
+  const { RangePicker } = DatePicker;
   const [serachItem, setserachItem] = useState([]);
   const [users, setusers] = useState();
   const [loading, setloading] = useState(true);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [fromdate, setFromdate] = useState();
+  const [todate, setTodate] = useState();
 
   useEffect(async () => {
     try {
@@ -25,6 +30,13 @@ const AllRooms = () => {
     }
   }, []);
 
+  function filterbyDate(dates) 
+  {
+    console.log(moment(dates[0]).format('DD-MM-YYYY'))
+    console.log(moment(dates[1]).format('DD-MM-YYYY'))
+    setFromdate(moment(dates[0]).format('DD-MM-YYYY'))
+    setTodate(moment(dates[1]).format('DD-MM-YYYY'))
+  }
 
   const deleteRoom = async (id) => {
     try {
@@ -42,11 +54,15 @@ const AllRooms = () => {
       <div className="row">
         <div class="input-group">
           <div className="col-md-6 mx-auto">
-            <input type="search" class="form-control" placeholder="Search by Room Name  " aria-label="Search" onChange={event => { setserachItem(event.target.value) }}
+            <input type="search" class="form-control" placeholder="Search by Room Name" aria-label="Search" onChange={event => { setserachItem(event.target.value) }}
               aria-describedby="search-addon" />
           </div>
         </div>
         <br></br><br></br>
+
+        <Space direction="vertical" size={12}>
+          <RangePicker format='DD-MM-YYYY' onChange={filterbyDate}/>
+        </Space>
 
 
         <div className="">
@@ -103,7 +119,7 @@ const AllRooms = () => {
                       <br /> <br />
                       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button className='btn btn-warning' onClick={handleShow}>View Details</button>
-                        <Link to={`/updateRoomsByID1/${user?._id}`}>
+                        <Link to={`/updateRoomsByID1/${user?._id}/${fromdate}/${todate}`}>
                           <button className='btn btn-primary'>Book Room</button>
                         </Link>
                         <Link to={`/updateRoomsByID/${user?._id}`}>
