@@ -16,7 +16,7 @@ import AllMenus from "./Components/Restaurants/AllMenus";
 import Home from "./Components/Layout/Main";
 import EditMenu from "./Components/Restaurants/EditMenu";
 import AddMenu from "./Components/Restaurants/AddMenu"
-
+import Displaymenus from "./Components/Restaurants/Client/Displaymenus"
 //sadumini
 import AllEmployee from "./Components/Employee/AllEmployee"
 import AddEmployee from "./Components/Employee/AddEmployee"
@@ -54,6 +54,8 @@ function App() {
         <Route path="/AllMenus" element={<AllMenus />} />
         <Route path="/updateMenuByID/:id" element={<EditMenu />} />
         <Route path="/addMenu" element={<AddMenu />} />
+        <Route path="/Displaymenus" element={<Displaymenus />} />
+
 
         <Route path="/AddRoom" element={<AddRoom />} />
         <Route path="/mainroom" element={<MainRoom />} />

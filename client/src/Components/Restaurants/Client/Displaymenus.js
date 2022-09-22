@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -16,15 +15,29 @@ import {
     Input,
     Form
 } from "reactstrap";
+import AddToCart from "./AddTocart";
 
 const Displaymenus = () => {
 
     
-const [serachItem,setserachItem] =useState([]);
+  const [serachItem,setserachItem] =useState([]);
   const [users, setusers] = useState();
   const [loading, setloading] = useState(true);
+  const [cartData, setcartData] = useState([]);
+  const [ShowCart, setShowCart] = useState(false);
 
+   var array = [];
 
+  const addDataToCart = (e,user)=>{
+      e.preventDefault();
+      array.push(user);
+      alert("Add to Cart  sucessfully  ")
+  }
+
+  const gotoCart = (e)=>{
+      setcartData(array);
+      setShowCart(true);
+  }
 
   useEffect(async () => {
     try {
@@ -58,40 +71,51 @@ const [serachItem,setserachItem] =useState([]);
 
         </center>
         
-      <section class="cards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: '30px' }}>
+        {ShowCart ? 
+            <AddToCart data={cartData}/> 
+          : 
 
-      {users &&
-              users.filter((users)=>{
-                if(serachItem ==""){
-                      return users
-                }else if(users.foodName.toLowerCase().includes(serachItem.toLowerCase())){
-             
-                  return users
-   }   })
-           .map((user) => {
-            return (
+            <section class="cards" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', marginTop: '30px' }}>
 
-
-          <article class="card" style={{ flex: '0 1 24%', borderWidth: '2px', marginBottom: '20px' }}>
-            <img src={user.images} alt='No Image Added...' style={{ width: '100%', height: 'auto' }} />
-            <h4>{user.foodName}</h4>
-            <p><b>LKR. {user.price}</b></p>
-            
-            <a className='btn btn-secondary'><b>Add to cart</b>
-            {/* <i className="fa-solid fa-cart-circle-plus"></i> */}
-            </a>
-          </article>
-            );
-    })}
+            {users &&
+                    users.filter((users)=>{
+                      if(serachItem ==""){
+                            return users
+                      }else if(users.foodName.toLowerCase().includes(serachItem.toLowerCase())){
+                  
+                        return users
+            }   })
+                .map((user) => {
+                  return (
 
 
-      </section>
+                <article class="card" style={{ flex: '0 1 24%', borderWidth: '2px', marginBottom: '20px' }}>
+                  <img src={user.images} alt='No Image Added...' style={{ width: '100%', height: 'auto' }} />
+                  <h4>{user.foodName}</h4>
+                  <p><b>LKR. {user.price}</b></p>
+                  
+                  <a className='btn btn-secondary'
+                      onClick={(e)=>{addDataToCart(e,user)}}
+                  ><b>Add to cart</b>
+                  {/* <i className="fa-solid fa-cart-circle-plus"></i> */}
+                  </a>
+                </article>
+                  );
+          })}
+
+
+            <center>
+              <button className='btn btn-success' onClick={(e)=>gotoCart(e)}> View Cart </button>
+            </center>
+
+            </section>
+        }
+
+
     </div>
   )
 }
 
 export default Displaymenus;
-
-
 
 
