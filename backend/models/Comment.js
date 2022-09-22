@@ -5,7 +5,9 @@ const commentSchema = new mongoose.Schema({
   comment: { type: String, required: true },
   userEmail: { type: String, required: true },
   userPNumber: { type: String, required: true },
-  userImage: { type: String, default: "" }
+  userImage: { type: String, default: "" },
+  likes: {type: Number, default: 0},
+  roomID: {type: String, default: ""}
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
