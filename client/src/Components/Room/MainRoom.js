@@ -2,7 +2,6 @@ import React from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
 import AllRooms from './AllRooms';
 import './Rooms.css'
-import ViewRooms from './services/ViewRooms';
 
 const images = [
     { url: "https://www.wijayabeach.com/conmain/images/IMG_0151.jpg" },
