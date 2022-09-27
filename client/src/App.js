@@ -27,6 +27,8 @@ import UpdateRooms from './Components/Room/UpdateRooms';
 import DisplayOneRoom from './Components/Room/DisplayOneRoom';
 import AllRooms from './Components/Room/AllRooms'
 import MainRoom from './Components/Room/MainRoom';
+import CusRoom from './Components/Room/Customer/CusRoom';
+import Booking from './Components/Room/Customer/Booking';
 
 let isauth = localStorage.getItem('user');
 function App() {
@@ -62,6 +64,8 @@ function App() {
         <Route path="/allroom" element={<AllRooms />} />
         <Route path="/updateRoomsByID/:id" element={<UpdateRooms />} />
         <Route path="/updateRoomsByID1/:id/:fromdate/:todate" element={<DisplayOneRoom />} />
+        <Route path="/cusroom" element={<CusRoom />} />
+        <Route path="/updateRoomsByIDcus/:id/:fromdate/:todate" element={<Booking />} />
 
       </Routes>
       <br></br>
