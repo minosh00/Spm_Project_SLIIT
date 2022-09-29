@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getRoomsById } from "../services/Room";
 import { MDBBtn } from 'mdb-react-ui-kit'
+import CommentsSection from "../../Comments/CommentsSection";
 
 const Booking = () => {
 
@@ -95,6 +96,9 @@ const Booking = () => {
             </div>
           </form>
         </div>
+      </div>
+      <div>
+        <CommentsSection />
       </div>
     </div>
   )
