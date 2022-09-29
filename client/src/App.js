@@ -29,8 +29,7 @@ import AllRooms from './Components/Room/AllRooms'
 import MainRoom from './Components/Room/MainRoom';
 import CusRoom from './Components/Room/Customer/CusRoom';
 import Booking from './Components/Room/Customer/Booking';
-import AddRooms from './Components/Rooms/ViewRooms';
-import ViewRooms from './Components/Rooms/AddRooms';
+
 import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
 import EditComment from './Components/Comments/EditComment';
@@ -73,7 +72,7 @@ function App() {
         <Route path="/cusroom" element={<CusRoom />} />
         <Route path="/updateRoomsByIDcus/:id/:fromdate/:todate" element={<Booking />} />
       <Route path="/comments-section" element={<CommentsSection />} />
-      <Route path="/comments-section/create" element={<AddComment />} />
+      <Route path="/comments-section/create/:roomID" element={<AddComment />} />
       <Route path="/comments-section/edit/:id" element={<EditComment />} />
 
       </Routes>
