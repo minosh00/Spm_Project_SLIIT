@@ -56,10 +56,6 @@
     padding-bottom: -12px;
     top: -13px;
     left: 12px;
-    position: absolute;
-    border-radius: 12px;
-    top: -20%;
-    margin-left: 10px;
     z-index: 20;
 }
 
