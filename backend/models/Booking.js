@@ -25,7 +25,7 @@ const bookingSchema = mongoose.Schema ({
         type: Number, required: true 
     },
 
-    totaldays: {
+    totDates: {
         type: Number, required: true 
     },
 

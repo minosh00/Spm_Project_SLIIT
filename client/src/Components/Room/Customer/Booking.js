@@ -3,16 +3,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getRoomsById } from "../services/Room";
-import { MDBBtn } from 'mdb-react-ui-kit'
+import { MDBBtn } from "mdb-react-ui-kit";
 import CommentsSection from "../../Comments/CommentsSection";
 
 const Booking = () => {
-
   const navigate = useNavigate();
   const { id, fromdate, todate } = useParams();
 
   const [name, setname] = useState("");
-  const [totDates,  setTotDates] = useState("");
+  const [totDates, setTotDates] = useState("");
   const [maxcount, setmaxcount] = useState();
   const [rentperday, setrentperday] = useState("");
   const [type, settype] = useState("");
@@ -26,11 +25,15 @@ const Booking = () => {
 
     console.log(toDate);
     console.log(fromDate);
-    setTotDates(Math.floor((toDate.getTime() - fromDate.getTime()) / (1000*60*60*24)));
+    setTotDates(
+      Math.floor(
+        (toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24)
+      )
+    );
   }, [todate, fromdate]);
 
   const totaldays = 3;
-  const totalamount = totDates * rentperday
+  const totalamount = totDates * rentperday;
   // const [totalamount, SetTotalAmount] = useState();
 
   function diffDays(fromdate, todate) {
@@ -62,37 +65,51 @@ const Booking = () => {
   }, []);
 
   return (
-
     <div>
       <div className="container shadow border border-5 my-5 mx-auto w-100">
         <div className="col p-3">
-          <h3 className=" fw-bolder mb-4"><center>Booking Room</center></h3>
+          <h3 className=" fw-bolder mb-4">
+            <center>Booking Room</center>
+          </h3>
           <form>
             <div className="row py-3">
               <div className="col-md-6">
-                <img src={imageurls[0]} className='image-fluid' alt='' />
+                <img src={imageurls[0]} className="image-fluid" alt="" />
               </div>
               <div className="col-md-6">
-                <h1>Booking Details</h1>
-                <hr />
-                <div>
-                  <p>Room Name: {name}</p>
-                  <p>From Date: {fromdate}</p>
-                  <p>To Date: {todate}</p>
-                  <p>Max Count: {maxcount}</p>
-                </div>
-                <div>
-                  <h1>Payment Details</h1>
+                <b>
+                  <h1>Booking Details</h1>
                   <hr />
-                  <p>Total Days: {totDates}</p>
-                  <p>Rent Per Day: LKR {rentperday}/=</p>
-                  <p>Total Amount: LKR {totalamount}/=</p>
-                </div>
+                  <div>
+                    <p>Room Name: {name}</p>
+                    <p>From Date: {fromdate}</p>
+                    <p>To Date: {todate}</p>
+                    <p>Max Count: {maxcount}</p>
+                  </div>
+                  <div>
+                    <h1>Payment Details</h1>
+                    <hr />
+                    <p>Total Days: {totDates}</p>
+                    <p>Rent Per Day: LKR {rentperday}/=</p>
+                    <p>Total Amount: LKR {totalamount}/=</p>
+                  </div>
+                </b>
               </div>
             </div>
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a><Link to="/cusroom"><MDBBtn rounded color="warning" type="submit" className="btn btn-success">Back to Home  </MDBBtn></Link></a>
+              <a>
+                <Link to="/cusroom">
+                  <MDBBtn
+                    rounded
+                    color="warning"
+                    type="submit"
+                    className="btn btn-success"
+                  >
+                    Back to Home{" "}
+                  </MDBBtn>
+                </Link>
+              </a>
             </div>
           </form>
         </div>
@@ -101,7 +118,7 @@ const Booking = () => {
         <CommentsSection />
       </div>
     </div>
-  )
+  );
 };
 
 export default Booking;
