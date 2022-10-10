@@ -66,7 +66,7 @@ const  AllSuppliers = ()=> {
              Supplier.filter((users)=>{
                if(serachItem ==""){
                      return users
-               }else if(users.fname.toLowerCase().includes(serachItem.toLowerCase())){
+               }else if(users.suppliername.toLowerCase().includes(serachItem.toLowerCase())){
             
                  return users
     }   }).map((user) => {
@@ -75,15 +75,15 @@ const  AllSuppliers = ()=> {
          <td>
            <div className='d-flex align-items-center'>
              <div className='ms-3'>
-               <p className='fw-bold mb-1'>{user.fname}</p>
+               <p className='fw-bold mb-1'>{user.suppliername}</p>
              </div>
            </div>
          </td>
          <td>
-           <p className='fw-normal mb-1'>  {user.Company}</p>
+           <p className='fw-normal mb-1'>  {user.supplierCompanyName}</p>
          </td>
          <td>
-           <p className='fw-normal mb-1'>  {user.Supplies}</p>
+           <p className='fw-normal mb-1'>  {user.SupplyItemsname}</p>
          </td>
          <td>
            <p className='fw-normal mb-1'>  {user.SupplyAmount}</p>
@@ -92,10 +92,13 @@ const  AllSuppliers = ()=> {
            <p className='fw-normal mb-1'>  {user.SupplyDate}</p>
          </td>
          <td>
-         <p className='fw-normal mb-1'>  {user.totPrice}</p>
+         <p className='fw-normal mb-1'>  {user.totalPrice}</p>
          </td>
          <td>
-         <h5><Link to ="/"><span   type="submit" class="badge rounded-pill badge-info">Update</span></Link></h5> 
+         <Link to={`/updateSupplierByID/${user?._id}`}>
+         <h5><span  type="submit" class="badge rounded-pill badge-success">Update</span></h5>
+                    
+          </Link>
          <h5><span  onClick={()=>removeSupplier(user._id)}  type="submit" class="badge rounded-pill badge-danger">Remove</span></h5> 
          </td>
        </tr>

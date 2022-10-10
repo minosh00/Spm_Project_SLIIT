@@ -74,6 +74,9 @@ const NavBar = () => {
                   <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllEmployee" aria-current="page">Edit  Employee</a>
                 </li>
 
+                <li class="nav-item">
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllSuppliers" aria-current="page">Edit  Suppliers</a>
+                </li>
 
             
 
