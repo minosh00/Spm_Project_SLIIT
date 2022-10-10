@@ -2,17 +2,19 @@ import Swal from "sweetalert2";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getRoomsById } from "../services/Room";
-import { MDBBtn } from 'mdb-react-ui-kit'
+import { MDBBtn } from "mdb-react-ui-kit";
 import CommentsSection from "../../Comments/CommentsSection";
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios'
 
 const Booking = () => {
-
   const navigate = useNavigate();
   const { id, fromdate, todate } = useParams();
 
+  const [room, setRoom] = useState([]);
+
   const [name, setname] = useState("");
-  const [totDates,  setTotDates] = useState("");
+  const [totDates, setTotDates] = useState("");
   const [maxcount, setmaxcount] = useState();
   const [rentperday, setrentperday] = useState("");
   const [type, settype] = useState("");
@@ -26,82 +28,147 @@ const Booking = () => {
 
     console.log(toDate);
     console.log(fromDate);
-    setTotDates(Math.floor((toDate.getTime() - fromDate.getTime()) / (1000*60*60*24)));
+    setTotDates(
+      Math.floor(
+        (toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24)
+      )
+    );
   }, [todate, fromdate]);
 
-  const totaldays = 3;
-  const totalamount = totDates * rentperday
-  // const [totalamount, SetTotalAmount] = useState();
-
-  function diffDays(fromdate, todate) {
-    // time difference
-    const timeDiff = Math.abs(fromdate.getTime() - todate.getTime());
-
-    // days difference
-    const totaldays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-    // difference
-    console.log(fromdate, todate);
-  }
-
-  const GetData = async () => {
-    let data = await getRoomsById(id);
-    console.log("Update Rooms", data);
-    setname(data?.data?.name);
-    setmaxcount(data?.data?.maxcount);
-    setrentperday(data?.data?.rentperday);
-    settype(data?.data?.description);
-    setimageurls(data?.data?.imageurls);
-    setfeatures(data?.data?.features);
-    setdescription(data?.data?.description);
-    // SetTotalAmount(totaldays * rentperday);
-  };
+  const totAmount = room.rentperday * totDates
 
   useEffect(() => {
-    GetData();
+    const getRoom = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/room/getRoomsById/${id}`)
+        setRoom(res.data);
+        console.log('render');
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getRoom()
   }, []);
 
-  return (
+  async function bookRoom() {
+    const bookingDetails = {
+      room: room.name,
+      userid: room._id,
+      fromdate,
+      todate,
+      totAmount,
+      totDates,
+    }
 
+    try {
+      const result = await axios.post('http://localhost:5000/book/bookroom', bookingDetails)
+    } catch (error) {
+
+    }
+  }
+
+  async function handleToken(token) {
+    console.log(token);
+  }
+
+  function onToken(token) {
+    console.log(token);
+  }
+
+  // const GetData = async () => {
+  //   let data = await getRoomsById(id);
+  //   console.log("Update Rooms", data);
+  //   setname(data?.data?.name);
+  //   setmaxcount(data?.data?.maxcount);
+  //   setrentperday(data?.data?.rentperday);
+  //   settype(data?.data?.description);
+  //   setimageurls(data?.data?.imageurls);
+  //   setfeatures(data?.data?.features);
+  //   setdescription(data?.data?.description);
+  // };
+
+  // useEffect(() => {
+  //   GetData();
+  // }, []);
+
+  return (
     <div>
       <div className="container shadow border border-5 my-5 mx-auto w-100">
         <div className="col p-3">
-          <h3 className=" fw-bolder mb-4"><center>Booking Room</center></h3>
+          <h3 className=" fw-bolder mb-4">
+            <center>Booking Room</center>
+          </h3>
           <form>
             <div className="row py-3">
               <div className="col-md-6">
-                <img src={imageurls[0]} className='image-fluid' alt='' />
+                <img src={imageurls[0]} className="image-fluid" alt="" />
               </div>
               <div className="col-md-6">
-                <h1>Booking Details</h1>
-                <hr />
-                <div>
-                  <p>Room Name: {name}</p>
-                  <p>From Date: {fromdate}</p>
-                  <p>To Date: {todate}</p>
-                  <p>Max Count: {maxcount}</p>
-                </div>
-                <div>
-                  <h1>Payment Details</h1>
+                <b>
+                  <h1>Booking Details</h1>
                   <hr />
-                  <p>Total Days: {totDates}</p>
-                  <p>Rent Per Day: LKR {rentperday}/=</p>
-                  <p>Total Amount: LKR {totalamount}/=</p>
-                </div>
+                  <div>
+                    <p>Name: {room.name}</p>
+                    <p>From Date: {fromdate}</p>
+                    <p>To Date: {todate}</p>
+                    <p>Max Count: {room.maxcount}</p>
+                  </div><br />
+                  <div>
+                    <h1>Payment Details</h1>
+                    <hr />
+                    <p>Total Days: {totDates}</p>
+                    <p>Rent Per Day: LKR {room.rentperday}/=</p>
+                    <p>Total Amount: LKR {totAmount}/=</p>
+                  </div>
+                </b>
               </div>
             </div>
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a><Link to="/cusroom"><MDBBtn rounded color="warning" type="submit" className="btn btn-success">Back to Home  </MDBBtn></Link></a>
+
+              <Link to="/payroom">
+                <MDBBtn
+                  rounded
+                  color="success"
+                  type="submit"
+                  className="btn btn-success"> summry
+                </MDBBtn>
+              </Link>
+
+              <a>
+                <Link to="/cusroom">
+                  <MDBBtn
+                    rounded
+                    color="warning"
+                    type="submit"
+                    className="btn btn-success"> Back to Home
+                  </MDBBtn>
+                </Link>
+              </a>
             </div>
           </form>
         </div>
       </div>
+
+      <StripeCheckout
+        stripeKey="pk_test_51Lr1EmF53OEZBtIfnDtu50k4oS98pyE6AfE0grktJfgVawhf7fEMAIbuSnQLCjXTDqC9PHNoJa2JkuJuZUeCI26300PQrA3w3S"
+        token={handleToken}
+        billingAddress
+        shippingAddress
+        amount={totAmount * 100}
+        currency='LKR'>
+
+        <MDBBtn rounded
+          color="warning"
+          type="submit" className='btn btn-danger' onClick={bookRoom}>Pay Now</MDBBtn>
+
+      </StripeCheckout>
+
       <div>
         <CommentsSection />
       </div>
     </div>
-  )
+  );
 };
 
 export default Booking;

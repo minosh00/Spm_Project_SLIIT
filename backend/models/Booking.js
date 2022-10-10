@@ -5,10 +5,6 @@ const bookingSchema = mongoose.Schema ({
         type: String, required: true 
     },
 
-    roomid: {
-        type: String, required: true 
-    },
-
     userid: {
         type: String, required: true 
     },
@@ -21,11 +17,11 @@ const bookingSchema = mongoose.Schema ({
         type: String, required: true 
     },
 
-    totalamount: {
+    totAmount: {
         type: Number, required: true 
     },
 
-    totaldays: {
+    totDates: {
         type: Number, required: true 
     },
 

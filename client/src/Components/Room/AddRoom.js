@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { Validateroom } from "./roomVaildate";
-import {MDBBtn} from 'mdb-react-ui-kit'
+import { MDBBtn } from 'mdb-react-ui-kit'
 
 const AddRoom = () => {
     const [name, setname] = useState("");
     const [maxcount, setmaxcount] = useState();
+    const [adult, setadult] = useState("");
+    const [children, setchildren] = useState("");
+    const [bedroom, setbedroom] = useState("");
     const [rentperday, setrentperday] = useState("");
     const [type, settype] = useState("");
     const [imageurls, setimageurls] = useState("");
@@ -20,6 +23,9 @@ const AddRoom = () => {
         const AddRoom = {
             name,
             maxcount,
+            adult,
+            children,
+            bedroom,
             rentperday,
             type,
             imageurls,
@@ -55,17 +61,30 @@ const AddRoom = () => {
                 <div className="col p-3">
                     <h3 className=" fw-bolder mb-4"><center>Add Room Details</center></h3>
                     <form onSubmit={changeOnClick} encType="">
-
                         <div className="row py-3">
                             <div className="col-md-6">
                                 <label for="name"> Room Name </label>
-                                <input type="text" class="form-control" onChange={(f) => setname(f.target.value)} placeholder="room name " />
+                                <input type="text" class="form-control" onChange={(f) => setname(f.target.value)} placeholder="Enter Room Name " />
                             </div>
                             <div class="col-md-6">
                                 <label for="type"> Room Type  </label>
                                 <input class="form-control" id="type" onChange={(f) => settype(f.target.value)} placeholder="Enter Room Type" />
                             </div>
+                        </div>
 
+                        <div className="row py-3">
+                            <div class="col-md-3">
+                                <label for="count"> Adult </label>
+                                <input class="form-control" onChange={(f) => setadult(f.target.value)} type="number" placeholder="No of Adult " />
+                            </div>
+                            <div class="col-md-4">
+                                <label for="rent">  Children </label>
+                                <input class="form-control" onChange={(f) => setchildren(f.target.value)} type="number" placeholder="No of Children" />
+                            </div>
+                            <div class="col-md-5">
+                                <label for="img">  Bed Rooms </label>
+                                <input class="form-control" onChange={(f) => setbedroom(f.target.value)} type="number" placeholder="No of Bedroom" />
+                            </div>
                         </div>
 
                         <div className="row py-3">

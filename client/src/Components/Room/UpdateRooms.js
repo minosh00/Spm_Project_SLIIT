@@ -12,6 +12,9 @@ const UpdateRooms = () => {
 
   const [name, setname] = useState("");
   const [maxcount, setmaxcount] = useState();
+  const [adult, setadult] = useState("");
+  const [children, setchildren] = useState("");
+  const [bedroom, setbedroom] = useState("");
   const [rentperday, setrentperday] = useState("");
   const [type, settype] = useState("");
   const [imageurls, setimageurls] = useState("");
@@ -25,6 +28,18 @@ const UpdateRooms = () => {
 
   const handlemaxcount = (e) => {
     setmaxcount(e.target.value);
+  };
+
+  const handleAdult = (e) => {
+    setadult(e.target.value);
+  };
+
+  const handleChildren = (e) => {
+    setchildren(e.target.value);
+  };
+
+  const handleBedroom = (e) => {
+    setbedroom(e.target.value);
   };
 
   const handlerentperday = (e) => {
@@ -59,6 +74,9 @@ const UpdateRooms = () => {
 
     setname(data?.data?.name);
     setmaxcount(data?.data?.maxcount);
+    setadult(data?.data?.adult);
+    setchildren(data?.data?.children);
+    setbedroom(data?.data?.bedroom);
     setrentperday(data?.data?.rentperday);
     settype(data?.data?.type);
     setimageurls(data?.data?.imageurls);
@@ -77,6 +95,9 @@ const UpdateRooms = () => {
 
       name: name,
       maxcount: maxcount,
+      adult: adult,
+      children: children,
+      bedroom: bedroom,
       rentperday: rentperday,
       description: description,
       type: type,
@@ -117,7 +138,21 @@ const UpdateRooms = () => {
                 <label for="type"> Room Type  </label>
                 <input class="form-control" id="type" value={type} onChange={handletype} placeholder="Enter Room Type" />
               </div>
+            </div>
 
+            <div className="row py-3">
+              <div class="col-md-3">
+                <label for="count"> Adult </label>
+                <input class="form-control" type="number" value={adult} onChange={handleAdult} placeholder="No of Adult" />
+              </div>
+              <div class="col-md-4">
+                <label for="rent">  Children </label>
+                <input class="form-control" type="number" value={children} onChange={handleChildren} placeholder="No of Children" />
+              </div>
+              <div class="col-md-5">
+                <label for="img">  Bed Room </label>
+                <input class="form-control" type='number' value={bedroom} onChange={handleBedroom} placeholder="No of BedRoom" />
+              </div>
             </div>
 
             <div className="row py-3">
