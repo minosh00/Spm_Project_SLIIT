@@ -33,6 +33,7 @@ import Booking from './Components/Room/Customer/Booking';
 import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
 import EditComment from './Components/Comments/EditComment';
+import Room_Payment from './Components/Room/Customer/Room_Payment';
 
 
 let isauth = localStorage.getItem('user');
@@ -70,6 +71,7 @@ function App() {
         <Route path="/updateRoomsByID/:id" element={<UpdateRooms />} />
         <Route path="/updateRoomsByID1/:id/:fromdate/:todate" element={<DisplayOneRoom />} />
         <Route path="/cusroom" element={<CusRoom />} />
+        <Route path="/payroom" element={<Room_Payment />} />
         <Route path="/updateRoomsByIDcus/:id/:fromdate/:todate" element={<Booking />} />
       <Route path="/comments-section" element={<CommentsSection />} />
       <Route path="/comments-section/create/:roomID" element={<AddComment />} />

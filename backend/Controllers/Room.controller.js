@@ -14,9 +14,9 @@ const getAllRooms = async (req, res) => {
 //update rooms by ID
 const updateRoomsByID = async (req, res) => {
     const { id } = req.params;
-    const { name, maxcount, rentperday, imageurls, description, features, type } = req.body;
+    const { name, maxcount, adult, children, bedroom, rentperday, imageurls, description, features, type } = req.body;
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No rooms with id: ${id}`);
-    const updatedGroups = { name, maxcount, rentperday, imageurls, features, description, type, _id: id };
+    const updatedGroups = { name, maxcount, adult, children, bedroom, rentperday, imageurls, features, description, type, _id: id };
     await ROOMS.findByIdAndUpdate(id, updatedGroups, { new: true });
     res.json(updatedGroups);
 }
@@ -24,9 +24,9 @@ const updateRoomsByID = async (req, res) => {
 //update rooms by ID
 const updateRoomsByID1 = async (req, res) => {
     const { id } = req.params;
-    const { name, maxcount, rentperday, imageurls, description, features, type } = req.body;
+    const { name, maxcount, adult, children, bedroom, rentperday, imageurls, description, features, type } = req.body;
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No rooms with id: ${id}`);
-    const updatedGroups = { name, maxcount, rentperday, imageurls, features, description, type, _id: id };
+    const updatedGroups = { name, maxcount, adult, children, bedroom, rentperday, imageurls, features, description, type, _id: id };
     await ROOMS.findByIdAndUpdate(id, updatedGroups, { new: true });
     res.json(updatedGroups);
 }
@@ -74,4 +74,38 @@ const getRoomsById = async (req, res) => {
     }
 }
 
-module.exports = { getAllRooms, updateRoomsByID, RemoveRooms, createRooms, getRoomsById, updateRoomsByID1 };
+//adult
+const getDetailsAdult = async (req, res) => {
+    try {
+        let adult = req.params.adult;
+        const groups = await ROOMS.find({ adult: adult });
+        res.status(200).json(groups);
+    } catch (err) {
+        res.json(err);
+    }
+}
+
+//children
+const getDetailsChildren = async (req, res) => {
+    try {
+        let children = req.params.children;
+        const groups = await ROOMS.find({ children: children });
+        res.status(200).json(groups);
+    } catch (err) {
+        res.json(err);
+    }
+}
+
+//bedroom
+const getDetailsBedroom = async (req, res) => {
+    try {
+        let bedroom = req.params.bedroom;
+        const groups = await ROOMS.find({ bedroom: bedroom });
+        res.status(200).json(groups);
+    } catch (err) {
+        res.json(err);
+    }
+}
+
+module.exports = { getAllRooms, updateRoomsByID, RemoveRooms, createRooms, getRoomsById, updateRoomsByID1, getDetailsAdult, getDetailsChildren, getDetailsBedroom };
+

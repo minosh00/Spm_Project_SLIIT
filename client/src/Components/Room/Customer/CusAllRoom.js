@@ -14,6 +14,10 @@ const CusAllRooms = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [adult, setAdult] = useState();
+  const [children, setChildren] = useState();
+  const [bedroom, setBedroom] = useState();
+
   const [fromdate, setFromdate] = useState();
   const [todate, setTodate] = useState();
 
@@ -30,22 +34,35 @@ const CusAllRooms = () => {
     }
   }, []);
 
-  function filterbyDate(dates) 
-  {
+  function filterbyDate(dates) {
     console.log(moment(dates[0]).format('YYYY-MM-DD'))
     console.log(moment(dates[1]).format('YYYY-MM-DD'))
     setFromdate(moment(dates[0]).format('YYYY-MM-DD'))
     setTodate(moment(dates[1]).format('YYYY-MM-DD'))
   }
 
-  const deleteRoom = async (id) => {
-    try {
-      const res = await axios.delete(`http://localhost:5000/room/RemoveRooms/${id}`)
-      const newRoom = users.filter(user => user._id !== id);
-      setusers(newRoom);
-    } catch (err) {
-      console.log(err);
-    }
+  function SearchAdult() {
+    axios.get(`http://localhost:5000/room/getadult/${adult}`)
+      .then(res => {
+        console.log(res.data)
+        setusers(res.data)
+      }).catch(err => console.error(err))
+  }
+
+  function SearchChildren() {
+    axios.get(`http://localhost:5000/room/getchildren/${children}`)
+      .then(res => {
+        console.log(res.data)
+        setusers(res.data)
+      }).catch(err => console.error(err))
+  }
+
+  function SearchBedroom() {
+    axios.get(`http://localhost:5000/room/getbedroom/${bedroom}`)
+      .then(res => {
+        console.log(res.data)
+        setusers(res.data)
+      }).catch(err => console.error(err))
   }
 
 
@@ -58,11 +75,57 @@ const CusAllRooms = () => {
               aria-describedby="search-addon" />
           </div>
         </div>
-        <br></br><br></br>
+        <br></br><br></br> 
+            <br />
 
-        <Space direction="vertical" size={12}>
-          <RangePicker format='DD-MM-YYYY' onChange={filterbyDate}/>
-        </Space>
+        <div className="row">
+          <div className="col-md-3">
+            <Space direction="vertical" size={12}>
+              <RangePicker className="date" format='DD-MM-YYYY' onChange={filterbyDate} />
+            </Space>
+          </div>
+          <div className="col-md-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="adult" id="adult" value={adult} onChange={e => setAdult(e.target.value)}>
+                <option>Adult</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <Button className='btn btn-primary search-btn' onClick={() => { SearchAdult({ adult }) }}>Search</Button>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="gid" id="gid" value={children} onChange={e => setChildren(e.target.value)}>
+                <option>Children</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <Button className='btn btn-primary search-btn' onClick={() => { SearchChildren({ children }) }}>Search</Button>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="gid" id="gid" value={bedroom} onChange={e => setBedroom(e.target.value)} >
+                <option>BedRoom</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <Button className='btn btn-primary search-btn' onClick={() => { SearchBedroom({ bedroom }) }}>Search</Button>
+            </div>
+            <br />
+            <br />
+          </div>
+        </div>
 
 
         <div className="">
@@ -79,18 +142,31 @@ const CusAllRooms = () => {
                 .map((user) => (
                   <div className="row bs" key={1}><br></br>
                     <h3> {user.name}</h3> <br /><br />
-                    <div className="col-md-6">
+                    <div className="col-md-7">
                       <img src={user.imageurls[0]} className="smallimg" alt="" />
                     </div>
 
-                    <div className="col-md-6">
+                    <div className="col-md-5">
                       <h5> <b>{user.type} Room</b></h5> <br />
                       <h5> <b>Features:</b> </h5>
                       <p className="feat">{user.features}</p> <br />
                       <h6> <b>Rent Per Day:</b> LKR {user.rentperday}/=</h6> <br />
-                      <h6> <b>Max Count:</b> {user.maxcount}</h6>
-                      {/* <h5> Features: {user.features}</h5>
-                       */}
+                      <div className="row">
+                        <div className="col-md-6">
+                          <h6> <b>Max Count: </b> 0{user.maxcount} </h6> <br />
+                        </div>
+                        <div className="col-md-6">
+                          <h6> <b>Adult: </b> 0{user.adult} </h6>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <h6> <b>Children: </b> 0{user.children} </h6>
+                        </div>
+                        <div className="col-md-6">
+                          <h6> <b>BedRoom: </b> 0{user.bedroom} </h6>
+                        </div>
+                      </div>
 
                       <Modal show={show} onHide={handleClose}>
                         <Modal.Header>

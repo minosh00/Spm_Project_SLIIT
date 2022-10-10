@@ -46,3 +46,8 @@ h1 {
 .feat {
     text-align: justify;
 }
+
+.date {
+    border: 2px solid black;
+    color: black;
+}
