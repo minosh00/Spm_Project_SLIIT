@@ -21,6 +21,8 @@ import Displaymenus from "./Components/Restaurants/Client/Displaymenus"
 //sadumini
 import AllEmployee from "./Components/Employee/AllEmployee"
 import AddEmployee from "./Components/Employee/AddEmployee"
+import AllSuppliers from "./Components/Supplier/AllSuppliers"
+import AddSupplier from "./Components/Supplier/AddSupplier"
 
 //cheee
 import AddRoom from './Components/Room/AddRoom';
@@ -69,6 +71,8 @@ function App() {
 
         <Route exact path="/AllEmployee" element={<AllEmployee />} />
         <Route exact path="/addemployee" element={<AddEmployee />} />
+        <Route exact path="/AllSuppliers" element={<AllSuppliers />} />
+        <Route exact path="/addsupplier" element={<AddSupplier />} />
 
         <Route exact path="/dashboard" element={<Home />} />
         <Route path="/AllMenus" element={<AllMenus />} />
