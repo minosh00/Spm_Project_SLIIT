@@ -121,7 +121,7 @@ const UpdateSupplyer = () => {
           <div className="row py-3">
             <div class="col-md-3">
               <label for="count"> Supply Items name </label>
-              <input class="form-control" type="number" value={SupplyItemsname} onChange={handleAdult} placeholder="  " />
+              <input class="form-control" type="text" value={SupplyItemsname} onChange={handleAdult} placeholder="  " />
             </div>
             <div class="col-md-4">
               <label for="rent">  Supply Amount </label>
