@@ -117,8 +117,8 @@ const Displaymenus = () => {
                           return (
 
 
-                            <div className='col-11 col-md-6 col-lg-3 mx-0 mb-4'  key={1} >
-                            <div class="card p-0 overflow-hidden h-100 shadow">
+                            <div className='col-7 col-md-6 col-lg-3 mx-0 mb-4'  key={1} >
+                            <div class="card p-0 overflow-hidden h-300 shadow">
                                 <img src={user.images}className='card-img-top img-fluid' />
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{user.foodName}</h5>
