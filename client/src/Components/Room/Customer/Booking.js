@@ -6,6 +6,9 @@ import { MDBBtn } from "mdb-react-ui-kit";
 import CommentsSection from "../../Comments/CommentsSection";
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios'
+import autoTable from 'jspdf-autotable'
+import { jsPDF } from "jspdf";
+import {  MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -75,30 +78,38 @@ const Booking = () => {
     console.log(token);
   }
 
-  // const GetData = async () => {
-  //   let data = await getRoomsById(id);
-  //   console.log("Update Rooms", data);
-  //   setname(data?.data?.name);
-  //   setmaxcount(data?.data?.maxcount);
-  //   setrentperday(data?.data?.rentperday);
-  //   settype(data?.data?.description);
-  //   setimageurls(data?.data?.imageurls);
-  //   setfeatures(data?.data?.features);
-  //   setdescription(data?.data?.description);
-  // };
 
-  // useEffect(() => {
-  //   GetData();
-  // }, []);
+  function pdfGenerat(){
+    var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+    
+    doc.autoTable({
+           
+            body: [
+                [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
+              ],
+            })
+        autoTable(doc, { html: '#roomdet' })
+       doc.save('booking.pdf')
+  
+          }
+
 
   return (
     <div>
+      <MDBTable >
+        <MDBTableHead></MDBTableHead>
+      <MDBTableBody id="roomdet">
       <div className="container shadow border border-5 my-5 mx-auto w-100">
         <div className="col p-3">
+
           <h3 className=" fw-bolder mb-4">
+
             <center>Booking Room</center>
           </h3>
-          <form>
+ 
+     
+          
+          <form >
             <div className="row py-3">
               <div className="col-md-6">
                 <img src={imageurls[0]} className="image-fluid" alt="" />
@@ -107,7 +118,7 @@ const Booking = () => {
                 <b>
                   <h1>Booking Details</h1>
                   <hr />
-                  <div>
+                  <div  >
                     <p>Name: {room.name}</p>
                     <p>From Date: {fromdate}</p>
                     <p>To Date: {todate}</p>
@@ -123,8 +134,11 @@ const Booking = () => {
                 </b>
               </div>
             </div>
+       
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+
+            <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  booking  PDF</button>
 
               <Link to="/payroom">
                 <MDBBtn
@@ -147,8 +161,10 @@ const Booking = () => {
               </a>
             </div>
           </form>
+ 
         </div>
       </div>
+      
 
       <StripeCheckout
         stripeKey="pk_test_51Lr1EmF53OEZBtIfnDtu50k4oS98pyE6AfE0grktJfgVawhf7fEMAIbuSnQLCjXTDqC9PHNoJa2JkuJuZUeCI26300PQrA3w3S"
@@ -167,6 +183,8 @@ const Booking = () => {
       <div>
         <CommentsSection />
       </div>
+      </MDBTableBody>
+      </MDBTable>
     </div>
   );
 };

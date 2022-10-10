@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import Loader from "../Restaurants/Loader";
+import autoTable from 'jspdf-autotable'
+import { jsPDF } from "jspdf";
 import { Link } from "react-router-dom";
 import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
@@ -34,6 +36,22 @@ const  AllSuppliers = ()=> {
  setusers(Supplier.filter(elem=>elem._id !== id))
  }
 
+
+ function pdfGenerat(){
+  var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+  
+  doc.autoTable({
+         
+          body: [
+              [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
+            ],
+          })
+      autoTable(doc, { html: '#supdate' })
+     doc.save('supply.pdf')
+
+        }
+
+
  return (
     <div className="container">
       <br></br>   
@@ -50,7 +68,8 @@ const  AllSuppliers = ()=> {
     <h3> <Link to="/addsupplier"><span type="submit" class="badge rounded-pill badge-info">Add New Supplier</span></Link></h3>
     <br></br>
     <MDBTable align='middle'>
-      <MDBTableHead>
+      <MDBTableHead >
+      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  Menu PDF</button>
        <tr>
          <th scope='col'>Supplier name   </th>
          <th scope='col'>Supplier Company </th>
@@ -61,7 +80,7 @@ const  AllSuppliers = ()=> {
          <th scope='col'>Actions</th>
        </tr>
       </MDBTableHead>
-    <MDBTableBody>
+    <MDBTableBody id="supdate" >
     {Supplier &&
              Supplier.filter((users)=>{
                if(serachItem ==""){
