@@ -2,10 +2,11 @@ import Swal from "sweetalert2";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getRoomsById } from "./services/Room";
+import { getRoomsById } from "../services/Room";
 import { MDBBtn } from 'mdb-react-ui-kit'
+import CommentsSection from "../../Comments/CommentsSection";
 
-const DisplayOneRoom = () => {
+const Booking = () => {
 
   const navigate = useNavigate();
   const { id, fromdate, todate } = useParams();
@@ -91,13 +92,16 @@ const DisplayOneRoom = () => {
             </div>
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <a><Link to="/mainroom"><MDBBtn rounded color="warning" type="submit" className="btn btn-success">Back to Home  </MDBBtn></Link></a>
+              <a><Link to="/cusroom"><MDBBtn rounded color="warning" type="submit" className="btn btn-success">Back to Home  </MDBBtn></Link></a>
             </div>
           </form>
         </div>
+      </div>
+      <div>
+        <CommentsSection />
       </div>
     </div>
   )
 };
 
-export default DisplayOneRoom;
+export default Booking;

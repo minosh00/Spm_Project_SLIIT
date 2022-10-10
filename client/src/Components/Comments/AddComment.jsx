@@ -50,7 +50,10 @@ const AddComment = () => {
         userEmail: email,
         userPNumber: "000003",
         userImage: "yuioyoieofsdfdgiteytuio",
+        roomID: window.location.pathname.split("/")[3]
       };
+
+      console.log(window.location.pathname.split("/")[3])
 
       axios
         .post("http://localhost:5000/api/comments", payload)

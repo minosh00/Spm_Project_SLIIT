@@ -46,7 +46,7 @@ const NavBar = () => {
               <div className="navbar-nav">
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">   Booking Room</a>
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/cusroom" aria-current="page">   Booking Room</a>
                 </li>
                 <li class="nav-item">
                   <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Displaymenus" aria-current="page">Restaurants</a>
@@ -73,10 +73,23 @@ const NavBar = () => {
                 <li class="nav-item">
                   <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllEmployee" aria-current="page">Edit  Employee</a>
                 </li>
+
+
+            
+
+
               </div>
+
+
             </div>
           </div>
+        
+       
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" , float: "right", marginRight: "10px"}} className="btn btn-secondary toggle" href="/Profile" aria-current="page">My Profile   </a>
+           
 
+
+        
           <button onClick={handleSubmit} className="btn btn-secondary toggle" aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
             {"Logout"}
           </button>

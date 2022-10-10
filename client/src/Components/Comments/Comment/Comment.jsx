@@ -35,6 +35,7 @@ const Comment = ({ commentText, username, image, stars, onDelete, onEdit }) => {
         <span className="comment-image">
           {username.charAt(0).toUpperCase()}
         </span>
+        <span className="comment-image">{username.charAt(0).toUpperCase()}</span>
         <span className="comment-text">{commentText}</span>
         {user && user.email === username && (
           <section className="button-section">

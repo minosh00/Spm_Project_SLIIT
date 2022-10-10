@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { DatePicker, Space } from 'antd';
 import moment from 'moment'
 
-const AllRooms = () => {
+const CusAllRooms = () => {
   const { RangePicker } = DatePicker;
   const [serachItem, setserachItem] = useState([]);
   const [users, setusers] = useState();
@@ -118,14 +118,10 @@ const AllRooms = () => {
 
                       <br /> <br />
                       <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button className='btn btn-warning' onClick={handleShow}>View Details</button>
-                        <Link to={`/updateRoomsByID1/${user?._id}/${fromdate}/${todate}`}>
-                          <button className='btn btn-primary'>Book Room</button>
+                        <button className='btn btn-danger' onClick={handleShow}>View Details</button>
+                        <Link to={`/updateRoomsByIDcus/${user?._id}/${fromdate}/${todate}`}>
+                          <button className='btn btn-success'>Book Room</button>
                         </Link>
-                        <Link to={`/updateRoomsByID/${user?._id}`}>
-                          <button className='btn btn-success'>Update Room</button>
-                        </Link>
-                        <button className='btn btn-danger' onClick={() => deleteRoom(user._id)}>Delete Room</button>
                       </div>
                     </div>
                   </div>
@@ -137,4 +133,4 @@ const AllRooms = () => {
   )
 }
 
-export default AllRooms
+export default CusAllRooms
