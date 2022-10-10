@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landingscreen from './Components/Landingscreen';
 import Login from "./Components/Auth/Login";
 import Register from "./Components/Auth/Register";
+import Profile from "./Components/Auth/Profile";
 import NavBar from "./Components/Layout/NavBar";
 import Footer from "./Components/Layout/Footer";
 
@@ -36,14 +37,23 @@ import EditComment from './Components/Comments/EditComment';
 
 
 let isauth = localStorage.getItem('user');
+
 function App() {
+
+  const [user, setUser] = useState("");
   const [posts, setPosts] = useState([]);
+  
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/rooms/")
       .then((res) => setPosts(res.data))
       .catch((error) => console.log(error));
   });
+
+
+  useEffect(() => {
+    setUser(localStorage.getItem("userRole"));
+  }, []);
 
 
   return (
@@ -53,6 +63,8 @@ function App() {
         <Route exact path="/" element={<Landingscreen />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
+        <Route exact path="/Profile" element={<Profile />} />
+        
 
         <Route exact path="/AllEmployee" element={<AllEmployee />} />
         <Route exact path="/addemployee" element={<AddEmployee />} />
