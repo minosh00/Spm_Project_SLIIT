@@ -41,7 +41,7 @@ const  AllSuppliers = ()=> {
       <h3 className=" fw-bolder mb-4"><center>Suppliers</center></h3>   
       <br></br>
       <div class="input-group">
-      <div className="col-md-9">
+      <div className="col-md-4">
         <input type="search" class="form-control" style={{ }} placeholder="Search by Supplier Name  " aria-label="Search"  onChange={event=>{setserachItem(event.target.value)}} 
    aria-describedby="search-addon" />
         </div>

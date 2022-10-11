@@ -15,20 +15,20 @@ export const ValidateAddNewMenu=(formData) =>{
             message : null
     };
 
-    if(formData.fname.length <= 2 )
+    if(formData.suppliername.length <= 2 )
     {
         output.message = messages._NAME_EMPTY;
         output.status = false;
         return output;
     
     }
-    if(formData.Company.length <= 2)
+    if(formData.supplierCompanyName.length <= 2)
     {
         output.message = messages.CompanyTYPE_EMPTY;
         output.status = false;
         return output;
     } 
-    if(formData.Supplies.length <= 2)
+    if(formData.SupplyItemsname.length <= 2)
     {
         output.message = messages.Supplies_EMPTY;
         output.status = false;

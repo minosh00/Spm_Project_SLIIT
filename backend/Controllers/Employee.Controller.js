@@ -23,14 +23,15 @@ const getAllEmployee = async (req, res) => {
 
 const updateEmployeeByID = async (req, res) => {
     const { id } = req.params;
-    const {     fname,
+    const {  
+        fname,
         lname,
         JobPosition,
         gender,
         HomeAddress,
         email,
-        Pnumber,
-          } = req.body;
+        Pnumber
+        } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No employee with id: ${id}`);
 
@@ -43,13 +44,10 @@ const updateEmployeeByID = async (req, res) => {
         Pnumber,
         _id:id};
 
-    await Employee.findByIdAndUpdate(id, updated, { new: true });
+    await Employee.findByIdAndUpdate(id, updatedGroups, { new: true });
 
-    res.json(updated);
+    res.json(updatedGroups);
 }
-
-
-
 
 const RemoveEmployee = async (request,response) => {
     await Employee.findByIdAndRemove(request.params.id,(error,employee) => {
