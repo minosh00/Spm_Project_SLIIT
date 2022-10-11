@@ -48,44 +48,25 @@ const NavBar = () => {
               <div className="navbar-nav">
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/cusroom" aria-current="page">   Booking Room</a>
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/cusroom" aria-current="page">Booking Room</a>
                 </li>
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Displaymenus" aria-current="page">Restaurants</a>
+                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/Displaymenus" aria-current="page">Restaurant</a>
                 </li>
-
                 <li class="nav-item">
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/comments-section" aria-current="page">comment section </a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/mainroom" aria-current="page">Edit Room</a>
                 </li>
-
-
-
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/" aria-current="page">Edit  Halls </a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllMenus" aria-current="page">Edit Restaurants</a>
                 </li>
-
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllMenus" aria-current="page">Edit  Restaurants</a>
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllEmployee" aria-current="page">Edit Employee</a>
                 </li>
 
                 <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/mainroom" aria-current="page">Edit  Room</a>
-
+                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllSuppliers" aria-current="page">Edit Suppliers</a>
                 </li>
-                <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllEmployee" aria-current="page">Edit  Employee</a>
-                </li>
-
-                <li class="nav-item">
-                  <a style={{ display: userRole == "admin" ? "flex" : "none", textDecoration: "none" }} class="nav-link" href="/AllSuppliers" aria-current="page">Edit  Suppliers</a>
-                </li>
-
-
-
-
               </div>
-
-
             </div>
           </div>
 
@@ -96,7 +77,7 @@ const NavBar = () => {
 
 
           <button onClick={handleSubmit} className="btn btn-secondary toggle" aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
-           {"Logout"}
+            {"Logout"}
           </button>
 
         </nav>

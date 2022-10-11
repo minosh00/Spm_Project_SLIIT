@@ -80,21 +80,6 @@ const AllRooms = () => {
       }).catch(err => console.error(err))
   }
 
- function pdfGenerat(){
-  var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-  
-  doc.autoTable({
-         
-          body: [
-              [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
-            ],
-          })
-      autoTable(doc, { html: '#roomdet' })
-     doc.save('rooms.pdf')
-
-        }
-
-
   return (
     <div className="container"><br /><br /><br />
       <div className="row">
@@ -105,8 +90,6 @@ const AllRooms = () => {
           </div>
         </div>
         <br /> <br />
-
-
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <Link to='/AddRoom'>
@@ -182,7 +165,7 @@ const AllRooms = () => {
               })
 
                 .map((user) => (
-                  <div className="row bs"   key={1}><br></br>
+                  <div className="row bs" key={1}><br></br>
                     <h3> {user.name}</h3> <br /><br />
                     <div className="col-md-6"   >
                       <img src={user.imageurls[0]} className="smallimg" alt="" />
@@ -244,9 +227,6 @@ const AllRooms = () => {
                         <button className='btn btn-success'> Update Room</button>
                       </Link>
                       <button className='btn btn-danger' onClick={() => deleteRoom(user._id)}>Delete Room</button>
-                      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  room PDF</button>
-
-
                     </div>
                   </div>
                 ))}
