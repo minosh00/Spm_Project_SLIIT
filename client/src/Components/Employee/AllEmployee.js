@@ -37,7 +37,8 @@ const  AllEmployee = ()=> {
  return (
     <div className="container">
       <br></br>   
-      <br></br>   
+      <br></br> 
+      <h3 className=" fw-bolder mb-4"><center>Employees</center></h3>  
       <br></br>
       <div class="input-group">
       <div className="col-md-9">
@@ -46,7 +47,10 @@ const  AllEmployee = ()=> {
         </div>
     </div>
     <br></br><br></br>
-    <h3> <Link to="/addemployee"><span type="submit" class="badge rounded-pill badge-info">Add New Employee</span></Link></h3>
+    <h3> 
+      <Link to="/addemployee"><span type="submit" class="badge rounded-pill badge-info">Add New Employee</span></Link>
+      <Link to="/AllSuppliers"><span type="submit" class="badge rounded-pill badge-info">Suppliers</span></Link>
+    </h3>
     <br></br>
     <MDBTable align='middle'>
       <MDBTableHead>

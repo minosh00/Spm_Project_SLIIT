@@ -3,6 +3,9 @@ import axios from "axios";
 import { Button, Modal, Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { DatePicker, Space } from 'antd';
+import autoTable from 'jspdf-autotable'
+import { jsPDF } from "jspdf";
+
 import moment from 'moment'
 import { useParams } from "react-router-dom";
 
@@ -77,6 +80,19 @@ const AllRooms = () => {
       }).catch(err => console.error(err))
   }
 
+ function pdfGenerat(){
+  var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+  
+  doc.autoTable({
+         
+          body: [
+              [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
+            ],
+          })
+      autoTable(doc, { html: '#roomdet' })
+     doc.save('rooms.pdf')
+
+        }
 
 
   return (
@@ -103,7 +119,6 @@ const AllRooms = () => {
 
 
         <br /> <br /><br />
-
 
         <div className="row">
           <div className="col-md-3">
@@ -167,9 +182,9 @@ const AllRooms = () => {
               })
 
                 .map((user) => (
-                  <div className="row bs" key={1}><br></br>
+                  <div className="row bs"   key={1}><br></br>
                     <h3> {user.name}</h3> <br /><br />
-                    <div className="col-md-6">
+                    <div className="col-md-6"   >
                       <img src={user.imageurls[0]} className="smallimg" alt="" />
                     </div>
 
@@ -196,18 +211,18 @@ const AllRooms = () => {
                       </div>
                     </div>
 
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={handleClose}   >
                       <Modal.Header>
                         <Modal.Title><center><b>{user.type} Room</b></center></Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>
+                      <Modal.Body >
 
                         <Carousel prevLabel='' nextLabel=''>
                           {
                             user.imageurls.map(url => {
                               return <Carousel.Item>
                                 <img className='d-block w-100 bigimg' src={url} />
-                                <h5> {user.description}</h5>
+                                <h5 id="roomdet" > {user.description} </h5>
                               </Carousel.Item>
                             })
                           }
@@ -229,6 +244,9 @@ const AllRooms = () => {
                         <button className='btn btn-success'> Update Room</button>
                       </Link>
                       <button className='btn btn-danger' onClick={() => deleteRoom(user._id)}>Delete Room</button>
+                      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  room PDF</button>
+
+
                     </div>
                   </div>
                 ))}

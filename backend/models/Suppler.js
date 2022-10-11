@@ -10,6 +10,8 @@ const SupplySchema = mongoose.Schema({
 
     SupplyItemsname:{type:String, required:true},
 
+    SupplyAmount:{type:Number, required:true},
+
     SupplyDate:{type:String, required:true},
 
     totalPrice:{type:String, required:true},

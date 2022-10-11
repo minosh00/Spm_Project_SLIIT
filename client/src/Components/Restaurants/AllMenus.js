@@ -4,6 +4,8 @@
  import Swal from "sweetalert2";
  import Loader from "./Loader";
  import { Link } from "react-router-dom";
+ import autoTable from 'jspdf-autotable'
+import { jsPDF } from "jspdf";
  import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 //ss
@@ -43,6 +45,22 @@
   }
 
 
+  function pdfGenerat(){
+    var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+    
+    doc.autoTable({
+           
+            body: [
+                [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
+              ],
+            })
+        autoTable(doc, { html: '#cusdet' })
+       doc.save('menu.pdf')
+  
+          }
+
+
+
 
 
   return (
@@ -61,7 +79,7 @@
 <MDBTable align='middle'>
 
       <MDBTableHead>
-
+      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  Menu PDF</button>
         <tr>
           <th scope='col'>Food Name </th>
           <th scope='col'>Food Description</th>
@@ -70,7 +88,7 @@
           <th scope='col'>Actions</th>
         </tr>
       </MDBTableHead>
-      <MDBTableBody>
+      <MDBTableBody id="cusdet">
       {users &&
               users.filter((users)=>{
                 if(serachItem ==""){
