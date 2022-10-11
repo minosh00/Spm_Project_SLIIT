@@ -5,8 +5,8 @@ import { AuthCustomer } from "../../Services/AuthServices";
 import { Tabs } from "antd";
 import axios from "axios";
 import logo from '../Auth/loginn.png'
-import autoTable from 'jspdf-autotable'
-import { jsPDF } from "jspdf";
+import { Button } from 'react-bootstrap'
+import RoomReport from "../Room/Customer/RoomReport";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 const { TabPane } = Tabs;
 
@@ -42,7 +42,6 @@ const Profile = () => {
     setUserEmail(data?.data?.email);
   }
 
-
   useEffect(() => {
     details();
   }, [])
@@ -60,24 +59,9 @@ const Profile = () => {
     getRooms()
   }, []);
 
-  function pdfGenerateRoom() {
-    var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-
-    doc.autoTable({
-
-      body: [
-        [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
-      ],
-    })
-    autoTable(doc, { html: '#supdate' })
-    doc.save('supply.pdf')
-
-  }
-
   return (
     <div>
       <div className='container shadow border border-5 my-5 mx-auto w-100'>
-
         <div className="mt-5 ml-3">
           <Tabs defaultActiveKey="1">
             <TabPane tab="My Profile" key="1">
@@ -111,7 +95,6 @@ const Profile = () => {
                 </MDBRow>
               </MDBContainer>
             </TabPane>
-
             <TabPane tab="My Bookings" key="2">
               <h3 className=" fw-bolder mb-4"> <br />
                 <center>My Bookings</center>
@@ -148,7 +131,7 @@ const Profile = () => {
                   }
                 </tbody>
               </table><br />
-              <button className="btn btn-danger btn-sm" onClick={pdfGenerateRoom}>Generate Receipt</button>
+              <Button className='btn btn-danger search-btn' onClick={() => RoomReport(room)}>Generate Pdf</Button> &nbsp;
               <br /><br /><br />
             </TabPane>
           </Tabs>
