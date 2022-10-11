@@ -7,30 +7,39 @@ router.post('/bookroom', async (req, res) => {
     const {
         room,
         userid,
+        Fullname,
+        email,
         fromdate,
         todate,
         totAmount,
-        totDates
+        totDates,
+        request
     } = req.body
 
     try {
         const newBooking = new Booking({
             room,
             userid,
+            Fullname,
+            email,
             fromdate,
             todate,
             totAmount,
             totDates,
-            transactionID: '1234'
+            transactionID: '1234',
+            request,
         })
         const booking = await newBooking.save();
         const roomtemp = await ROOMS.findOne({ _id: userid._id })
         roomtemp.currentbookings.push({
             bookingid: booking._id,
             fromdate: fromdate,
+            Fullname: Fullname,
+            email: email,
             todate: todate,
             userid: userid,
-            status: booking.status
+            status: booking.status,
+            request: booking.request,
         });
 
         await roomtemp.save()
@@ -47,6 +56,38 @@ router.get('/viewbook', async (req, res) => {
         res.status(200).json(book);
     } catch (error) {
         res.status(404).json({ message: error.message });
+    }
+})
+
+
+//Get booking details from login user name
+router.get('/details/:Fullname', async (req, res) => {
+    try {
+        let Fullname = req.params.Fullname;
+        const book = await Booking.find({ Fullname: Fullname });
+        res.status(200).json(book);
+    } catch (err) {
+        res.json(err);
+    }
+})
+
+router.get('/getbookingbyuserid/:Fullname', async (req, res) => {
+    try {
+        let Fullname = req.params.Fullname;
+        const book = await Booking.find({ Fullname: Fullname });
+        res.status(200).json(book);
+    } catch (err) {
+        res.json(err);
+    }
+});
+
+
+router.get('/getname/Prasadi', async (req, res) => {
+    try {
+        const book = await Booking.find({ Fullname: 'Prasadi' });
+        res.status(200).json(book);
+    } catch (err) {
+        res.json(err);
     }
 })
 

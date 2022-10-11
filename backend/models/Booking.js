@@ -9,6 +9,14 @@ const bookingSchema = mongoose.Schema ({
         type: String, required: true 
     },
 
+    Fullname: {
+        type: String, required: true 
+    },
+
+    email: {
+        type: String, required: true 
+    },
+
     fromdate: {
         type: String, required: true 
     },
@@ -30,7 +38,11 @@ const bookingSchema = mongoose.Schema ({
     },
 
     status: {
-        type: String, required: true, default: 'booked' 
+        type: String, required: true, default: 'Booked' 
+    },
+
+    request: {
+        type: String, required: true, default: 'Active' 
     }
 }, {
     timestamps: true,
