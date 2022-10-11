@@ -69,7 +69,7 @@ const  AllSuppliers = ()=> {
     <br></br>
     <MDBTable align='middle'>
       <MDBTableHead >
-      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  Menu PDF</button>
+      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate Supplier PDF</button>
        <tr>
          <th scope='col'>Supplier name   </th>
          <th scope='col'>Supplier Company </th>
