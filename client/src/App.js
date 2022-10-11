@@ -28,11 +28,11 @@ import AddSupplier from "./Components/Supplier/AddSupplier"
 import UpdateSupplyer from "./Components/Supplier/UpdateSupplyer"
 
 //cheee
-import AddRoom from './Components/Room/AddRoom';
-import UpdateRooms from './Components/Room/UpdateRooms';
-import DisplayOneRoom from './Components/Room/DisplayOneRoom';
-import AllRooms from './Components/Room/AllRooms'
-import MainRoom from './Components/Room/MainRoom';
+import AddRoom from './Components/Room/Admin/AddRoom';
+import UpdateRooms from './Components/Room/Admin/UpdateRooms';
+import DisplayOneRoom from './Components/Room/Admin/DisplayOneRoom';
+import AllRooms from './Components/Room/Admin/AllRooms'
+import MainRoom from './Components/Room/Admin/MainRoom';
 import CusRoom from './Components/Room/Customer/CusRoom';
 import Booking from './Components/Room/Customer/Booking';
 
@@ -40,7 +40,7 @@ import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
 import EditComment from './Components/Comments/EditComment';
 import Room_Payment from './Components/Room/Customer/Room_Payment';
-import AllBookings from './Components/Room/AllBookings';
+import AllBookings from './Components/Room/Admin/AllBookings';
 import CancelBooking from './Components/Room/Customer/CancelBooking';
 
 
