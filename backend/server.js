@@ -20,7 +20,7 @@ dotenv.config();
 
 //import Routes 
 app.use("/user",  require("./routes/Userroutes"));
-app.use("/foods", require("./routes/Menu.Routes"));
+
 app.use("/room", require("./routes/Room.Routes"));
 app.use("/employee", require("./routes/Employee.Routes"));
 app.use('/api', require('./routes/Comment.Routes'));

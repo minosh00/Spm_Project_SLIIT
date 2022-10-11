@@ -8,7 +8,6 @@ router.post("/menu",createMenu);
 router.get("/getAllMenu",get);
 router.get("/getMenuById/:id",getMenuById);
 router.patch("/updateMenuByID/:id",updateMenuByID);
-router.patch("/updateMenuByID/:id",updateMenuByID);
 router.delete("/RemoveFood/:id",RemoveFood);
 
 

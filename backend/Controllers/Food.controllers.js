@@ -17,11 +17,11 @@ const get = async (req, res) => {
 
 const updateMenuByID = async (req, res) => {
     const { id } = req.params;
-    const {     name ,description ,price,images  } = req.body;
+    const { name ,description ,price,images } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No menu with id: ${id}`);
 
-    const updatedGroups = {    name ,description ,price,images  ,_id:id};
+    const updatedGroups = { name ,description ,price,images  ,_id:id};
 
     await Groups.findByIdAndUpdate(id, updatedGroups, { new: true });
 

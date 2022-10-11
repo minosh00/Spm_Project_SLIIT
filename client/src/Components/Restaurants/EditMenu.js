@@ -60,9 +60,8 @@ const EditMenu = () => {
     e.preventDefault();
     let newdata = {
 
-      name:name,
+        name:name,
         price:price,
-
         description  :description,
         images:images,
            
