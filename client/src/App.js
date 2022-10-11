@@ -21,11 +21,12 @@ import EditMenu from "./Components/Restaurants/EditMenu";
 import AddMenu from "./Components/Restaurants/AddMenu"
 import Displaymenus from "./Components/Restaurants/Client/Displaymenus"
 //sadumini
-import AllEmployee from "./Components/Employee/AllEmployee"
-import AddEmployee from "./Components/Employee/AddEmployee"
-import AllSuppliers from "./Components/Supplier/AllSuppliers"
-import AddSupplier from "./Components/Supplier/AddSupplier"
-import UpdateSupplyer from "./Components/Supplier/UpdateSupplyer"
+import AllEmployee from "./Components/Employee/AllEmployee";
+import AddEmployee from "./Components/Employee/AddEmployee";
+import UpdateEmployee from './Components/Employee/UpdateEmployee';
+import AllSuppliers from "./Components/Supplier/AllSuppliers";
+import AddSupplier from "./Components/Supplier/AddSupplier";
+import UpdateSupplyer from "./Components/Supplier/UpdateSupplyer";
 
 //cheee
 import AddRoom from './Components/Room/Admin/AddRoom';
@@ -76,6 +77,7 @@ function App() {
 
         <Route  path="/AllEmployee" element={<AllEmployee />} />
         <Route  path="/addemployee" element={<AddEmployee />} />
+        <Route  path="/updateEmployeeByID/:id" element={<UpdateEmployee />} />
         <Route  path="/AllSuppliers" element={<AllSuppliers />} />
         <Route  path="/addsupplier" element={<AddSupplier />} />
         <Route  path="/updateSupplierByID/:id" element={<UpdateSupplyer />} />

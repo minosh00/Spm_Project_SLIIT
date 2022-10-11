@@ -41,14 +41,14 @@ const  AllEmployee = ()=> {
       <h3 className=" fw-bolder mb-4"><center>Employees</center></h3>  
       <br></br>
       <div class="input-group">
-      <div className="col-md-9">
-        <input type="search" class="form-control" style={{ }} placeholder="Search by Employee Name  " aria-label="Search"  onChange={event=>{setserachItem(event.target.value)}} 
+      <div className="col-md-4">
+        <input type="search" class="form-control" placeholder="Search by Employee Name  " aria-label="Search"  onChange={event=>{setserachItem(event.target.value)}} 
    aria-describedby="search-addon" />
         </div>
     </div>
     <br></br><br></br>
     <h3> 
-      <Link to="/addemployee"><span type="submit" class="badge rounded-pill badge-info">Add New Employee</span></Link>
+      <Link to="/addemployee"><span type="submit" class="badge rounded-pill badge-info" style={{ marginRight: "10px"}}>Add New Employee</span></Link>
       <Link to="/AllSuppliers"><span type="submit" class="badge rounded-pill badge-info">Suppliers</span></Link>
     </h3>
     <br></br>
@@ -56,12 +56,12 @@ const  AllEmployee = ()=> {
       <MDBTableHead>
        <tr>
          <th scope='col'>Employee First name   </th>
-         <th scope='col'>Employee last  name </th>
+         <th scope='col'>Employee last name </th>
          <th scope='col'>Employee Job Position   </th>
          <th scope='col'>Employee gender   </th>
          <th scope='col'>Employee Home Address   </th>
-         <th scope='col'>Employee  email  </th>
-         <th scope='col'>Employee  Phone Number  </th>
+         <th scope='col'>Employee email  </th>
+         <th scope='col'>Employee Phone Number  </th>
          <th scope='col'>Actions</th>
        </tr>
       </MDBTableHead>
@@ -75,42 +75,44 @@ const  AllEmployee = ()=> {
                  return users
     }   }).map((user) => {
     return (
-       <tr>
-         <td>
-           <div className='d-flex align-items-center'>
-             <div className='ms-3'>
-               <p className='fw-bold mb-1'>{user.fname}</p>
-             </div>
-           </div>
-         </td>
-         <td>
-           <p className='fw-normal mb-1'>  {user.lname}</p>
-         </td>
-         <td>
-           <p className='fw-normal mb-1'>  {user.JobPosition}</p>
-         </td>
-         <td>
-         <MDBBadge color='success' pill>
-           <p className='fw-normal mb-1'>  {user.gender}</p>
-        </MDBBadge>
-         </td>
-         <td>
-           <p className='fw-normal mb-1'>  {user.HomeAddress}</p>
-         </td>
-         <td>
-         <p className='fw-normal mb-1'>  {user.email}</p>
-         </td>
-         <td> {user.Pnumber}</td>
-         <td>
-         <h5><Link to ="/"><span   type="submit" class="badge rounded-pill badge-info">Update</span></Link></h5> 
-         <h5><span  onClick={()=>removeEmployee(user._id)}  type="submit" class="badge rounded-pill badge-danger">Remove</span></h5> 
-         </td>
-       </tr>
-          );
-       })}
-     </MDBTableBody>
-   </MDBTable>
-   </div>
+      <tr>
+        <td>
+          <div className='d-flex align-items-center'>
+            <div className='ms-3'>
+              <p className='fw-bold mb-1'>{user.fname}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p className='fw-normal mb-1'>  {user.lname}</p>
+        </td>
+        <td>
+          <p className='fw-normal mb-1'>  {user.JobPosition}</p>
+        </td>
+        <td>
+          <MDBBadge color='success' pill>
+            <p className='fw-normal mb-1'>  {user.gender}</p>
+          </MDBBadge>
+        </td>
+        <td>
+          <p className='fw-normal mb-1'>  {user.HomeAddress}</p>
+        </td>
+        <td>
+          <p className='fw-normal mb-1'>  {user.email}</p>
+        </td>
+        <td> {user.Pnumber}</td>
+        <td>
+          <Link to={`/updateEmployeeByID/${user?._id}`}>
+            <h5><span  type="submit" class="badge rounded-pill badge-success">Update</span></h5>       
+          </Link> 
+          <h5><span  onClick={()=>removeEmployee(user._id)}  type="submit" class="badge rounded-pill badge-danger">Remove</span></h5> 
+        </td>
+      </tr>
+    );
+  })}
+  </MDBTableBody>
+  </MDBTable>
+  </div>
    
  );
 }
