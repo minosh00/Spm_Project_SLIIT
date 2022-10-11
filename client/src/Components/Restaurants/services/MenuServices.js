@@ -1,19 +1,18 @@
 import axios from 'axios';
 
 
-let getGroupURL = "http://localhost:5000/foods/getAllMenu/"; 
-let getGroupByIdURL = "http://localhost:5000/foods/getMenuById/";
-let updateGroupByIdURL = "http://localhost:5000/foods/updateMenuByID/";
+let getGroupURL = "http://localhost:5000/menu/getAllMenu/"; 
+let getGroupByIdURL = "http://localhost:5000/menu/getMenuById/";
+let updateGroupByIdURL = "http://localhost:5000/menu/updateMenuByID/";
 
 
 
 export async function updateMenuByID(id,data) {
     const alldata = {
       
-        foodName:data.foodName,
+        name:data.name,
         price:data.price,
-        RestaurantsType:data.RestaurantsType,
-        Description:data.Description,
+        name:data.name,
         images:data.images,
     
     };

@@ -12,10 +12,9 @@ const EditMenu = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [foodName, setfoodName] = useState("");
+  const [name, setfoodName] = useState("");
   const [price, setprice] = useState("");
-  const [RestaurantsType, setRestaurantsType] = useState("");
-  const [Description, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [images, setimages] = useState("");
 
 
@@ -28,9 +27,6 @@ const EditMenu = () => {
     setprice(e.target.value);
   };
 
-  const handleGruopMembersItNumbers = (e) => {
-    setRestaurantsType(e.target.value);
-  };
 
   const handleGruopMembersNames= (e) => {
     setDescription(e.target.value);
@@ -48,10 +44,9 @@ const EditMenu = () => {
     let data = await getMenuById(id);
     console.log("Update groups", data);
 
-    setfoodName(data?.data?.foodName);
+    setfoodName(data?.data?.name);
     setprice(data?.data?.price);
-    setRestaurantsType(data?.data?.RestaurantsType);
-    setDescription(data?.data?.Description);
+    setDescription(data?.data?.description);
     setimages(data?.data?.images);
 
 
@@ -65,17 +60,17 @@ const EditMenu = () => {
     e.preventDefault();
     let newdata = {
 
-        foodName:foodName,
+      name:name,
         price:price,
-        RestaurantsType:RestaurantsType,
-        Description  :Description,
+
+        description  :description,
         images:images,
            
     };
 
     let data = await updateMenuByID(id, newdata);
     console.log("Update success ", data);
-    if (!data?.data?.foodName) {
+    if (!data?.data?.name) {
       {   Swal.fire('Congrats' , 'Update menu  successfully ' , 'success')
 
       navigate("/AllMenus");
@@ -130,7 +125,7 @@ const EditMenu = () => {
                         
                                <div class="form-floating mb-3">
                                <label for="" style={{color:"" , fontSize:"20px"}}>  Food Name </label><br></br><br></br>
-                                   <input type="text" class="form-control" id="floatingInput"  style={{width:"190%"}}      value={foodName}   onChange={handleGroupID}   required placeholder="food name " />
+                                   <input type="text" class="form-control" id="floatingInput"  style={{width:"190%"}}      value={name}   onChange={handleGroupID}   required placeholder="food name " />
                                
                                </div>
                                <div class="form-floating mb-3"><br></br><br></br>
@@ -139,13 +134,7 @@ const EditMenu = () => {
                                  
                                </div>
 
-                               <div class="form-floating mb-3"><br></br><br></br>
-                               <label for="floatingInput"style={{color:"" , fontSize:"20px"}} >  Restaurants Type </label>
-                                
-                                   <input type="text" class="form-control" id="exampleFormControlTextarea3"  style={{width:"190%"}}     value={RestaurantsType} onChange={handleGruopMembersItNumbers} required  placeholder="  Restaurants Type"  >
-                                   </input>
-
-                               </div>
+                          
 
                               
                                
@@ -153,7 +142,7 @@ const EditMenu = () => {
                                <div class="form-floating mb-3"><br></br><br></br>
                                <label for="floatingInput" style={{color:"" , fontSize:"20px"}} >  Description </label>
                                 
-                                   <textarea class="form-control" id="exampleFormControlTextarea3"   style={{width:"190%"}}    value={Description}
+                                   <textarea class="form-control" id="exampleFormControlTextarea3"   style={{width:"190%"}}    value={description}
 
 onChange={handleGruopMembersNames}  required  placeholder=" food Description"    rows="6">
                                    </textarea>

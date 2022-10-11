@@ -23,7 +23,7 @@ import { jsPDF } from "jspdf";
   useEffect(async () => {
     try {
       const data = await (
-        await axios.get("http://localhost:5000/foods/getAllMenu/")
+        await axios.get("http://localhost:5000/menu/getAllMenu/")
       ).data;
       setusers(data);
       setloading(false);
@@ -83,7 +83,6 @@ import { jsPDF } from "jspdf";
         <tr>
           <th scope='col'>Food Name </th>
           <th scope='col'>Food Description</th>
-          <th scope='col'>Restaurant Type </th>
           <th scope='col'>Food Price </th>
           <th scope='col'>Actions</th>
         </tr>
@@ -93,7 +92,7 @@ import { jsPDF } from "jspdf";
               users.filter((users)=>{
                 if(serachItem ==""){
                       return users
-                }else if(users.foodName.toLowerCase().includes(serachItem.toLowerCase())){
+                }else if(users.name.toLowerCase().includes(serachItem.toLowerCase())){
              
                   return users
    }   })
@@ -109,20 +108,16 @@ import { jsPDF } from "jspdf";
                 className='rounded-circle'
               />
               <div className='ms-3'>
-                <p className='fw-bold mb-1'>{user.foodName}</p>
+                <p className='fw-bold mb-1'>{user.name}</p>
          
               </div>
             </div>
           </td>
           <td>
-            <p className='fw-normal mb-1'>   {user.Description}</p>
+            <p className='fw-normal mb-1'>   {user.description}</p>
          
           </td>
-          <td>
-            <MDBBadge color='success' pill>
-            {user.RestaurantsType}
-            </MDBBadge>
-          </td>
+          
           <td> Rs: {user.price}</td>
           <td>
           <h5><Link to ={{pathname:`/updateMenuByID/${user?._id}`}}><span   type="submit" class="badge rounded-pill badge-warning">Update</span></Link></h5> 
