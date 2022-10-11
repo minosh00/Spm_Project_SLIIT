@@ -91,4 +91,33 @@ router.get('/getname/Prasadi', async (req, res) => {
     }
 })
 
+router.get('/getbookstatus/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const book = await Booking.findById(id);
+        res.status(200).json(book);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+})
+
+router.put('/updatestatus/:id', async (req, res) => {
+    try {
+        const { status, request } = req.body;
+        await Booking.findOneAndUpdate({ _id: req.params.id }, { status, request })
+        res.json({ msg: "Updated Status" })
+    } catch (err) {
+        return res.status(500).json({ msg: err.message })
+    }
+})
+
+router.delete('/deletestatus/:id', async (req, res) => {
+    try {
+        await Booking.findByIdAndDelete(req.params.id)
+        res.json({ msg: "Deleted Booking" })
+    } catch (err) {
+        return res.status(500).json({ msg: err.message })
+    }
+})
+
 module.exports = router;
