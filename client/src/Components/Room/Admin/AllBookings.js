@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import { Button } from 'react-bootstrap'
+import RoomPdfReport from './RoomPdfReport';
 
 function AllBookings() {
 
@@ -33,7 +36,7 @@ function AllBookings() {
                         <center>All Bookings</center>
                         <hr />
                     </h3>
-                    <table class="table">
+                    <table class="table" Id="FundsTrans">
                         <thead className='table-dark'>
                             <tr>
                                 <th scope='col'>No</th>
@@ -66,6 +69,17 @@ function AllBookings() {
                             }
                         </tbody>
                     </table>
+
+                    <Button className='btn btn-danger search-btn' onClick={() => RoomPdfReport(room)}>Generate Pdf</Button> &nbsp;
+
+                    <ReactHTMLTableToExcel
+                        id="test-table-xls-button"
+                        className="btn btn-danger"
+                        table="FundsTrans"
+                        filename="AllBooking"
+                        sheet="tablexls"
+                        buttonText="Export As Excel" /> <br /> <br />
+
                 </div>
             </div>
         </div>

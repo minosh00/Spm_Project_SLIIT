@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getRoomsById } from "./services/Room";
+import { getRoomsById } from "../services/Room";
 import { MDBBtn } from 'mdb-react-ui-kit'
 
 const DisplayOneRoom = () => {
