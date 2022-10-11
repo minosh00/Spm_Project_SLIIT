@@ -1,42 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from "react";
+import { Tabs } from "antd";
 import axios from "axios";
+import { Tag } from "antd";
+import { Link } from "react-router-dom";
+const { TabPane } = Tabs;
 
 function Room_Payment() {
 
-    const [room, setRoom] = useState();
-
-    useEffect(async () => {
-        try {
-            const data = await (
-                await axios.get("http://localhost:5000/book/viewbook")
-            ).data;
-            setRoom(data);
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
-
     return (
-        <div>
-            <div className="">
-                <div className="container">
-                    {
-                        room && room
-                            .map((room) => (
-                                <div className="row bs" key={1}><br></br>
-                                    <h3> {room.room}</h3>
-                                    <h3> {room.fromdate}</h3>
-                                    <h3> {room.todate}</h3>
-                                    <h3> {room.totAmount}</h3>
-                                    <h3> {room.totDates}</h3>
-                                    <h3> {room.status}</h3><br /><br />
-                                </div>
-                            ))
-                    }
-                </div>
-            </div>
+        <div className="mt-5 ml-3">
+            <Tabs defaultActiveKey="1">
+                <TabPane tab="Profile" key="1">
+                    <h1>
+                        s
+                    </h1>
+                </TabPane>
+
+                <TabPane tab="Bookings" key="2">
+                    <h1>
+                        k
+                    </h1>
+                </TabPane>
+            </Tabs>
         </div>
-    )
+    );
 }
 
-export default Room_Payment
+export default Room_Payment;
+

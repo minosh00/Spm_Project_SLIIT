@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
 import AllRooms from './AllRooms';
 import './Rooms.css'
@@ -11,7 +11,8 @@ const images = [
 
 ];
 
-const MainRoom = () => (
+const MainRoom = (props) => (
+   
 
     <blockquote class="blockquote text-center">
         <div>

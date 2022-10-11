@@ -7,8 +7,10 @@ import autoTable from 'jspdf-autotable'
 import { jsPDF } from "jspdf";
 
 import moment from 'moment'
+import { useParams } from "react-router-dom";
 
 const AllRooms = () => {
+
   const { RangePicker } = DatePicker;
   const [serachItem, setserachItem] = useState([]);
   const [users, setusers] = useState();
@@ -78,21 +80,6 @@ const AllRooms = () => {
       }).catch(err => console.error(err))
   }
 
- function pdfGenerat(){
-  var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-  
-  doc.autoTable({
-         
-          body: [
-              [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
-            ],
-          })
-      autoTable(doc, { html: '#roomdet' })
-     doc.save('rooms.pdf')
-
-        }
-
-
   return (
     <div className="container"><br /><br /><br />
       <div className="row">
@@ -104,9 +91,17 @@ const AllRooms = () => {
         </div>
         <br /> <br />
 
-        <Link to={'/AddRoom'}>
-          <button className='btn btn-primary'>Add Room</button>
-        </Link><br /> <br />
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <Link to='/AddRoom'>
+            <button className='btn btn-secondary'>Add Room</button>
+          </Link>
+          <Link to='/allbookingsroom'>
+            <button className='btn btn-secondary'>All Bookings</button>
+          </Link>
+        </div>
+
+
+        <br /> <br /><br />
 
         <div className="row">
           <div className="col-md-3">
@@ -115,37 +110,45 @@ const AllRooms = () => {
             </Space>
           </div>
           <div className="col-md-3">
-            <Button className='btn btn-primary search-btn' onClick={() => { SearchAdult({ adult }) }}>Search</Button>
-            <select className='form-control select-btn' name="adult" id="adult" value={adult} onChange={e => setAdult(e.target.value)}>
-              <option>Adult</option>SearchAdult
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select><br />
-          </div>
-          
-          <div className="col-md-3">
-            <Button className='btn btn-primary search-btn' onClick={() => { SearchChildren({ children }) }}>Search</Button>
-            <select className='form-control select-btn' name="gid" id="gid" value={children} onChange={e => setChildren(e.target.value)}>
-              <option>Children</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select><br />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="adult" id="adult" value={adult} onChange={e => setAdult(e.target.value)}>
+                <option>Adult</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchAdult({ adult }) }}>Search</Button>
+            </div>
           </div>
 
           <div className="col-md-3">
-            <Button className='btn btn-primary search-btn' onClick={() => { SearchBedroom({ bedroom }) }}>Search</Button>
-            <select className='form-control select-btn' name="gid" id="gid" value={bedroom} onChange={e => setBedroom(e.target.value)} >
-              <option>BedRoom</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select><br />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="gid" id="gid" value={children} onChange={e => setChildren(e.target.value)}>
+                <option>Children</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchChildren({ children }) }}>Search</Button>
+            </div>
+          </div>
+
+          <div className="col-md-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <select className='form-control select-btn' name="gid" id="gid" value={bedroom} onChange={e => setBedroom(e.target.value)} >
+                <option>BedRoom</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchBedroom({ bedroom }) }}>Search</Button>
+            </div>
+            <br />
+            <br />
           </div>
         </div>
 
@@ -162,7 +165,7 @@ const AllRooms = () => {
               })
 
                 .map((user) => (
-                  <div className="row bs"   key={1}><br></br>
+                  <div className="row bs" key={1}><br></br>
                     <h3> {user.name}</h3> <br /><br />
                     <div className="col-md-6"   >
                       <img src={user.imageurls[0]} className="smallimg" alt="" />
@@ -224,9 +227,6 @@ const AllRooms = () => {
                         <button className='btn btn-success'> Update Room</button>
                       </Link>
                       <button className='btn btn-danger' onClick={() => deleteRoom(user._id)}>Delete Room</button>
-                      <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  room PDF</button>
-
-
                     </div>
                   </div>
                 ))}

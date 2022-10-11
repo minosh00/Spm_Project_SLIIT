@@ -5,13 +5,31 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { MDBBtn } from "mdb-react-ui-kit";
 import CommentsSection from "../../Comments/CommentsSection";
 import StripeCheckout from 'react-stripe-checkout';
+import { AuthCustomer } from "../../../Services/AuthServices";
 import axios from 'axios'
-import autoTable from 'jspdf-autotable'
-import { jsPDF } from "jspdf";
-import {  MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 const Booking = () => {
   const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    navigate("/Login");
+  }
+
+  const [Fullname, setUserName] = useState("");
+  const [email, setUserEmail] = useState("");
+  const [currentUserID, setcurrentUserID] = useState("");
+
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleUserEmail = (e) => {
+    setUserEmail(e.target.value);
+  };
+
   const { id, fromdate, todate } = useParams();
 
   const [room, setRoom] = useState([]);
@@ -24,6 +42,19 @@ const Booking = () => {
   const [imageurls, setimageurls] = useState("");
   const [features, setfeatures] = useState("");
   const [description, setdescription] = useState("");
+
+  const details = async () => {
+    let token = localStorage.getItem('token');
+    let data = await AuthCustomer(token);
+    console.log("current User", data?.data);
+    setcurrentUserID(data?.data?._id);
+    setUserName(data?.data?.Fullname);
+    setUserEmail(data?.data?.email);
+  }
+
+  useEffect(() => {
+    details();
+  }, [])
 
   useEffect(() => {
     const toDate = new Date(todate);
@@ -57,6 +88,8 @@ const Booking = () => {
     const bookingDetails = {
       room: room.name,
       userid: room._id,
+      Fullname,
+      email,
       fromdate,
       todate,
       totAmount,
@@ -78,74 +111,65 @@ const Booking = () => {
     console.log(token);
   }
 
+  // const GetData = async () => {
+  //   let data = await getRoomsById(id);
+  //   console.log("Update Rooms", data);
+  //   setname(data?.data?.name);
+  //   setmaxcount(data?.data?.maxcount);
+  //   setrentperday(data?.data?.rentperday);
+  //   settype(data?.data?.description);
+  //   setimageurls(data?.data?.imageurls);
+  //   setfeatures(data?.data?.features);
+  //   setdescription(data?.data?.description);
+  // };
 
-  function pdfGenerat(){
-    var doc = new jsPDF('landscape', 'px', 'a4', 'false');
-    
-    doc.autoTable({
-           
-            body: [
-                [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
-              ],
-            })
-        autoTable(doc, { html: '#roomdet' })
-       doc.save('booking.pdf')
-  
-          }
-
+  // useEffect(() => {
+  //   GetData();
+  // }, []);
 
   return (
     <div>
-      <MDBTable >
-        <MDBTableHead></MDBTableHead>
-      <MDBTableBody id="roomdet">
       <div className="container shadow border border-5 my-5 mx-auto w-100">
         <div className="col p-3">
-
           <h3 className=" fw-bolder mb-4">
-
             <center>Booking Room</center>
           </h3>
- 
-     
-          
-          <form >
+
+          <form>
             <div className="row py-3">
-              <div className="col-md-6">
-                <img src={imageurls[0]} className="image-fluid" alt="" />
+              <div className="col-md-6"> <br/>
+                <img src={room.imageurls} className="image-fluid" alt="" />
               </div>
               <div className="col-md-6">
                 <b>
                   <h1>Booking Details</h1>
                   <hr />
-                  <div  >
-                    <p>Name: {room.name}</p>
-                    <p>From Date: {fromdate}</p>
-                    <p>To Date: {todate}</p>
-                    <p>Max Count: {room.maxcount}</p>
+                  <div>
+                    <p>Customer Name: {Fullname}</p>
+                    <p>Customer E-mail: {email}</p>
+                    <p>Room Name: {room.name}</p>
+                    <p>Check-in Date: {fromdate}</p>
+                    <p>Check-out Date: {todate}</p>
                   </div><br />
                   <div>
                     <h1>Payment Details</h1>
                     <hr />
-                    <p>Total Days: {totDates}</p>
                     <p>Rent Per Day: LKR {room.rentperday}/=</p>
+                    <p>Total Days: {totDates}</p>
                     <p>Total Amount: LKR {totAmount}/=</p>
                   </div>
                 </b>
               </div>
             </div>
-       
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 
-            <button className="btn btn-danger btn-sm"  onClick={pdfGenerat}>Generate  booking  PDF</button>
-
-              <Link to="/payroom">
+              <Link to="/profile">
                 <MDBBtn
                   rounded
                   color="success"
                   type="submit"
-                  className="btn btn-success"> summry
+                  className="btn btn-success"> Booking Details
                 </MDBBtn>
               </Link>
 
@@ -161,10 +185,8 @@ const Booking = () => {
               </a>
             </div>
           </form>
- 
         </div>
       </div>
-      
 
       <StripeCheckout
         stripeKey="pk_test_51Lr1EmF53OEZBtIfnDtu50k4oS98pyE6AfE0grktJfgVawhf7fEMAIbuSnQLCjXTDqC9PHNoJa2JkuJuZUeCI26300PQrA3w3S"
@@ -183,8 +205,6 @@ const Booking = () => {
       <div>
         <CommentsSection />
       </div>
-      </MDBTableBody>
-      </MDBTable>
     </div>
   );
 };
