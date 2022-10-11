@@ -50,7 +50,7 @@ const AddRoom = () => {
         } else {
             axios.post("http://localhost:5000/room/room", AddRoom);
             Swal.fire("Congrats", " New room  Added  successfully", "success")
-            navigate("/mainroom");;
+            navigate("/mainroom");
         }
     };
 

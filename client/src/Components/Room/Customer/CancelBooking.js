@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const UpdateStatusSup = (props) => {
+const CancelBooking = (props) => {
+
+    const { id } = useParams("");
+
+    const navigate = useNavigate();
 
     const [room, setRoom] = useState({
         status: "",
@@ -11,7 +15,7 @@ const UpdateStatusSup = (props) => {
     useEffect(() => {
         const getRoom = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/book/getstatus/${id}`)
+                const res = await axios.get(`http://localhost:5000/book/getbookstatus/${id}`)
                 setRoom(res.data);
                 console.log('render');
             } catch (err) {
@@ -24,12 +28,11 @@ const UpdateStatusSup = (props) => {
 
     function sendData(e) {
         e.preventDefault();
-
         axios.put(`http://localhost:5000/book/updatestatus/${id}`, room)
             .then(res => {
                 console.log(res.data)
                 alert("Booking Status Updated Sucessfully")
-                props.history.push('/profile');
+                navigate("/profile");
             }).catch((err) => {
                 alert(err)
                 console.error(err)
@@ -40,28 +43,29 @@ const UpdateStatusSup = (props) => {
     return (
         <div>
             <div>
-            <br/><br/>
-                <div className="container shadow my-5 update-status">
-                    <div className="col p-5 mx-auto">
-                        <h3 className=" fw-bolder mb-5"><center>Update Booking Status</center></h3>
-                        <form onSubmit={sendData}>
-                            <div className="form-group">
-                                <select className="form-control" name='itemType'
-                                    value={room.status}
-                                    onChange={(e) => { setRoom({ status: e.target.value }) }}>
-                                    <option>Pending</option>
-                                    <option>Cancel</option>
-                                    <option>Reject</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 rounded-pill">Update Status</button>
-                        </form>
+                <br /><br />
+
+                <h3 className=" fw-bolder mb-5"><center>Update Booking Status</center></h3>
+                <form onSubmit={sendData}>
+                    <div class="card mx-auto w-50">
+                        <div class="card-body">
+                            <select className="form-control" name='itemType'
+                                value={room.status}
+                                onChange={(e) => { setRoom({ status: e.target.value }) }}>
+                                <option>Select Booking Status</option>
+                                <option>Cancel</option>
+                                <option>Booked</option>
+                            </select> <br />
+                            <center>
+                                <button type="submit" class="btn btn-success">Update Status</button>
+                            </center>
+                        </div>
                     </div>
 
-                </div>
+                </form>
             </div>
         </div>
     )
 }
 
-export default UpdateStatusSup;
+export default CancelBooking;

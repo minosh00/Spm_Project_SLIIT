@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AuthCustomer } from "../../Services/AuthServices";
 import { Tabs } from "antd";
 import axios from "axios";
 import logo from '../Auth/loginn.png'
+import autoTable from 'jspdf-autotable'
+import { jsPDF } from "jspdf";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 const { TabPane } = Tabs;
 
@@ -57,6 +59,20 @@ const Profile = () => {
     }
     getRooms()
   }, []);
+
+  function pdfGenerateRoom() {
+    var doc = new jsPDF('landscape', 'px', 'a4', 'false');
+
+    doc.autoTable({
+
+      body: [
+        [{ content: '  ', colSpan: 2, rowSpan: 2, styles: { halign: 'center' } }],
+      ],
+    })
+    autoTable(doc, { html: '#supdate' })
+    doc.save('supply.pdf')
+
+  }
 
   return (
     <div>
@@ -125,13 +141,15 @@ const Profile = () => {
                         <td>{topic.todate}</td>
                         <td>LKR {topic.totAmount}/=</td>
                         <td><button className='btn btn-success'>{topic.status}</button></td>
-                        <td><button className='btn btn-danger'>Request</button></td>
+                        <td><Link to={`/cancelbook/${topic._id}`}><button className='btn btn-danger'>Request</button></Link></td>
                       </tr>
                     )
                     )
                   }
                 </tbody>
-              </table>
+              </table><br />
+              <button className="btn btn-danger btn-sm" onClick={pdfGenerateRoom}>Generate Receipt</button>
+              <br /><br /><br />
             </TabPane>
           </Tabs>
         </div>
