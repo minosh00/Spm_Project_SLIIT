@@ -5,10 +5,31 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { MDBBtn } from "mdb-react-ui-kit";
 import CommentsSection from "../../Comments/CommentsSection";
 import StripeCheckout from 'react-stripe-checkout';
+import { AuthCustomer } from "../../../Services/AuthServices";
 import axios from 'axios'
 
 const Booking = () => {
   const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    navigate("/Login");
+  }
+
+  const [Fullname, setUserName] = useState("");
+  const [email, setUserEmail] = useState("");
+  const [currentUserID, setcurrentUserID] = useState("");
+
+
+  const handleUserName = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleUserEmail = (e) => {
+    setUserEmail(e.target.value);
+  };
+
   const { id, fromdate, todate } = useParams();
 
   const [room, setRoom] = useState([]);
@@ -21,6 +42,19 @@ const Booking = () => {
   const [imageurls, setimageurls] = useState("");
   const [features, setfeatures] = useState("");
   const [description, setdescription] = useState("");
+
+  const details = async () => {
+    let token = localStorage.getItem('token');
+    let data = await AuthCustomer(token);
+    console.log("current User", data?.data);
+    setcurrentUserID(data?.data?._id);
+    setUserName(data?.data?.Fullname);
+    setUserEmail(data?.data?.email);
+  }
+
+  useEffect(() => {
+    details();
+  }, [])
 
   useEffect(() => {
     const toDate = new Date(todate);
@@ -54,6 +88,8 @@ const Booking = () => {
     const bookingDetails = {
       room: room.name,
       userid: room._id,
+      Fullname,
+      email,
       fromdate,
       todate,
       totAmount,
@@ -98,26 +134,28 @@ const Booking = () => {
           <h3 className=" fw-bolder mb-4">
             <center>Booking Room</center>
           </h3>
+
           <form>
             <div className="row py-3">
-              <div className="col-md-6">
-                <img src={imageurls[0]} className="image-fluid" alt="" />
+              <div className="col-md-6"> <br/>
+                <img src={room.imageurls} className="image-fluid" alt="" />
               </div>
               <div className="col-md-6">
                 <b>
                   <h1>Booking Details</h1>
                   <hr />
                   <div>
-                    <p>Name: {room.name}</p>
-                    <p>From Date: {fromdate}</p>
-                    <p>To Date: {todate}</p>
-                    <p>Max Count: {room.maxcount}</p>
+                    <p>Customer Name: {Fullname}</p>
+                    <p>Customer E-mail: {email}</p>
+                    <p>Room Name: {room.name}</p>
+                    <p>Check-in Date: {fromdate}</p>
+                    <p>Check-out Date: {todate}</p>
                   </div><br />
                   <div>
                     <h1>Payment Details</h1>
                     <hr />
-                    <p>Total Days: {totDates}</p>
                     <p>Rent Per Day: LKR {room.rentperday}/=</p>
+                    <p>Total Days: {totDates}</p>
                     <p>Total Amount: LKR {totAmount}/=</p>
                   </div>
                 </b>
@@ -126,12 +164,12 @@ const Booking = () => {
             <br />
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 
-              <Link to="/payroom">
+              <Link to="/profile">
                 <MDBBtn
                   rounded
                   color="success"
                   type="submit"
-                  className="btn btn-success"> summry
+                  className="btn btn-success"> Booking Details
                 </MDBBtn>
               </Link>
 

@@ -1,5 +1,3 @@
-
-
 import React, { Fragment } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BsPersonLinesFill } from "react-icons/bs"
@@ -7,7 +5,11 @@ import { BsFillPersonPlusFill } from "react-icons/bs"
 import { MdOutlineChecklistRtl } from "react-icons/md"
 import { MdPictureAsPdf } from "react-icons/md"
 import { FaFileUpload } from "react-icons/fa"
+import { FaUser } from 'react-icons/fa'
+import { TbLogout } from 'react-icons/tb'
+
 import Login from '../../images/login.png';
+
 const NavBar = () => {
 
   const navigate = useNavigate();
@@ -75,7 +77,7 @@ const NavBar = () => {
                 </li>
 
 
-            
+
 
 
               </div>
@@ -83,15 +85,15 @@ const NavBar = () => {
 
             </div>
           </div>
-        
-       
-                  <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none" , float: "right", marginRight: "10px"}} className="btn btn-secondary toggle" href="/Profile" aria-current="page">My Profile   </a>
-           
 
 
-        
+          <a style={{ display: userRole == "customer" ? "flex" : "none", textDecoration: "none", float: "right", marginRight: "10px" }} className="btn btn-secondary toggle" href="/Profile" aria-current="page"><FaUser /> &nbsp;Profile   </a>
+
+
+
+
           <button onClick={handleSubmit} className="btn btn-secondary toggle" aria-haspopup="true" aria-expanded="false" type="submit" style={{ float: "right", marginRight: "10px", display: userRole ? "flex" : "none" }}>
-            {"Logout"}
+           {"Logout"}
           </button>
 
         </nav>

@@ -94,7 +94,7 @@ const CusAllRooms = () => {
                 <option>4</option>
                 <option>5</option>
               </select>
-              <Button className='btn btn-primary search-btn' onClick={() => { SearchAdult({ adult }) }}>Search</Button>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchAdult({ adult }) }}>Search</Button>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ const CusAllRooms = () => {
                 <option>3</option>
                 <option>4</option>
               </select>
-              <Button className='btn btn-primary search-btn' onClick={() => { SearchChildren({ children }) }}>Search</Button>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchChildren({ children }) }}>Search</Button>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ const CusAllRooms = () => {
                 <option>3</option>
                 <option>4</option>
               </select>
-              <Button className='btn btn-primary search-btn' onClick={() => { SearchBedroom({ bedroom }) }}>Search</Button>
+              <Button className='btn btn-dark search-btn' onClick={() => { SearchBedroom({ bedroom }) }}>Search</Button>
             </div>
             <br />
             <br />

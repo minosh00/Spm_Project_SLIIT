@@ -1,6 +1,8 @@
 import 'antd/dist/antd.css';
 import "./App.css";
 
+import '../node_modules/font-awesome/css/font-awesome.min.css';
+
 import React, { Profiler, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -35,6 +37,7 @@ import CommentsSection from './Components/Comments/CommentsSection';
 import AddComment from './Components/Comments/AddComment';
 import EditComment from './Components/Comments/EditComment';
 import Room_Payment from './Components/Room/Customer/Room_Payment';
+import AllBookings from './Components/Room/AllBookings';
 
 
 let isauth = localStorage.getItem('user');
@@ -43,7 +46,7 @@ function App() {
 
   const [user, setUser] = useState("");
   const [posts, setPosts] = useState([]);
-  
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/rooms/")
@@ -65,7 +68,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/Profile" element={<Profile />} />
-        
+
 
         <Route exact path="/AllEmployee" element={<AllEmployee />} />
         <Route exact path="/addemployee" element={<AddEmployee />} />
@@ -84,10 +87,11 @@ function App() {
         <Route path="/updateRoomsByID1/:id/:fromdate/:todate" element={<DisplayOneRoom />} />
         <Route path="/cusroom" element={<CusRoom />} />
         <Route path="/payroom" element={<Room_Payment />} />
+        <Route path="/allbookingsroom" element={<AllBookings />} />
         <Route path="/updateRoomsByIDcus/:id/:fromdate/:todate" element={<Booking />} />
-      <Route path="/comments-section" element={<CommentsSection />} />
-      <Route path="/comments-section/create/:roomID" element={<AddComment />} />
-      <Route path="/comments-section/edit/:id" element={<EditComment />} />
+        <Route path="/comments-section" element={<CommentsSection />} />
+        <Route path="/comments-section/create/:roomID" element={<AddComment />} />
+        <Route path="/comments-section/edit/:id" element={<EditComment />} />
 
       </Routes>
       <br></br>
