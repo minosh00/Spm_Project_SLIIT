@@ -45,6 +45,6 @@ Customers can go through these pages and get a good idea about the hotels’ roo
 
 3.Go to the directory named client  and run the command 'npm i --force'
 
-3. Open the client directory in separate command prompt/powershell window and run the command 'npm start'
+4. Open the client directory in separate command prompt/powershell window and run the command 'npm start'
 
-4. Go to the directory named backend  and run the command 'npm start'
+5. Go to the directory named backend  and run the command 'npm start'
