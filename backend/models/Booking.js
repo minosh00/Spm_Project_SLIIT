@@ -5,11 +5,15 @@ const bookingSchema = mongoose.Schema ({
         type: String, required: true 
     },
 
-    roomid: {
+    userid: {
         type: String, required: true 
     },
 
-    userid: {
+    Fullname: {
+        type: String, required: true 
+    },
+
+    email: {
         type: String, required: true 
     },
 
@@ -21,11 +25,11 @@ const bookingSchema = mongoose.Schema ({
         type: String, required: true 
     },
 
-    totalamount: {
+    totAmount: {
         type: Number, required: true 
     },
 
-    totaldays: {
+    totDates: {
         type: Number, required: true 
     },
 
@@ -34,7 +38,11 @@ const bookingSchema = mongoose.Schema ({
     },
 
     status: {
-        type: String, required: true, default: 'booked' 
+        type: String, required: true, default: 'Booked' 
+    },
+
+    request: {
+        type: String, required: true, default: 'Active' 
     }
 }, {
     timestamps: true,
