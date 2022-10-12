@@ -43,7 +43,7 @@ Customers can go through these pages and get a good idea about the hotels’ roo
 
 2. Open the root directory in command prompt and run the command 'npm start'
 
-  3.Go to the directory named client  and run the command 'npm i --force'
+    3.Go to the directory named client  and run the command 'npm i --force'
 
 4. Open the client directory in separate command prompt/powershell window and run the command 'npm start'
 
