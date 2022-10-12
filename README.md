@@ -1,5 +1,5 @@
 # Group-ID: SER013
-## Project name: panthera-hotel-management-system
+## Project name: Wijaya-Beach-Hotel-Management-System
 ## Group Details
 
 * IT20019136 Weerasinghe W.P.S.W
