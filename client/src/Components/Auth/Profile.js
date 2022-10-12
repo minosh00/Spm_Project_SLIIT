@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthCustomer } from "../../Services/AuthServices";
 import { Tabs } from "antd";
 import axios from "axios";
 import logo from '../Auth/loginn.png'
-import { Button } from 'react-bootstrap'
-import RoomReport from "../Room/Customer/RoomReport";
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 const { TabPane } = Tabs;
 
@@ -42,6 +40,7 @@ const Profile = () => {
     setUserEmail(data?.data?.email);
   }
 
+
   useEffect(() => {
     details();
   }, [])
@@ -62,6 +61,7 @@ const Profile = () => {
   return (
     <div>
       <div className='container shadow border border-5 my-5 mx-auto w-100'>
+
         <div className="mt-5 ml-3">
           <Tabs defaultActiveKey="1">
             <TabPane tab="My Profile" key="1">
@@ -95,6 +95,7 @@ const Profile = () => {
                 </MDBRow>
               </MDBContainer>
             </TabPane>
+
             <TabPane tab="My Bookings" key="2">
               <h3 className=" fw-bolder mb-4"> <br />
                 <center>My Bookings</center>
@@ -124,15 +125,13 @@ const Profile = () => {
                         <td>{topic.todate}</td>
                         <td>LKR {topic.totAmount}/=</td>
                         <td><button className='btn btn-success'>{topic.status}</button></td>
-                        <td><Link to={`/cancelbook/${topic._id}`}><button className='btn btn-danger'>Request</button></Link></td>
+                        <td><button className='btn btn-danger'>Request</button></td>
                       </tr>
                     )
                     )
                   }
                 </tbody>
-              </table><br />
-              <Button className='btn btn-danger search-btn' onClick={() => RoomReport(room)}>Generate Pdf</Button> &nbsp;
-              <br /><br /><br />
+              </table>
             </TabPane>
           </Tabs>
         </div>

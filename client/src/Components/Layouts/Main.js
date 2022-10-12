@@ -1,8 +1,8 @@
 import React from 'react';
 import SimpleImageSlider from "react-simple-image-slider";
 import Main from "./Main.css"
-import About from '../Layout/About'
-import Contact from '../Layout/Contact'
+import About from '../Layouts/About'
+import Contact from '../Layouts/Contact'
 
 const images = [
   { url: "https://i0.wp.com/www.chuzailiving.com/wp-content/uploads/2016/01/Wijaya-Beach-Sri-Lanka-3.jpg?resize=1000%2C667&ssl=1" },
@@ -23,7 +23,7 @@ const Home = () => (
 
     <div>
       <SimpleImageSlider
-        style={{ marginTop: '-7%' }}
+        style={{ marginTop: '-2%' }}
         width='100%'
         height={604}
         images={images}

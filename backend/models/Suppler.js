@@ -14,7 +14,7 @@ const SupplySchema = mongoose.Schema({
 
     SupplyDate:{type:String, required:true},
 
-    totalPrice:{type:String, required:true},
+    totalPrice:{type:Number, required:true},
 
 
 },{

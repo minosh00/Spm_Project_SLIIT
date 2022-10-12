@@ -8,23 +8,23 @@ import logo from "../../images/menuss.png";
 import { ValidateAddNewMenu } from "./Validation";
 
 const AddSupplier = () => {
-  const [fname, setfname] = useState("");
-  const [Company, setCompany] = useState("");
-  const [Supplies, setSupplies] = useState("");
+  const [suppliername, setfname] = useState("");
+  const [supplierCompanyName, setCompany] = useState("");
+  const [SupplyItemsname, setSupplies] = useState("");
   const [SupplyAmount, setSupplyAmount] = useState("");
   const [SupplyDate, setSupplyDate] = useState("");
-  const [totPrice, settotPrice] = useState("");
+  const [totalPrice, settotPrice] = useState("");
   const navigate = useNavigate();
 
 
   const changeOnClick = (f) => {
     const Supplier = {
-      fname,
-      Company,
-      Supplies,
+      suppliername,
+      supplierCompanyName,
+      SupplyItemsname,
       SupplyAmount,
       SupplyDate,
-      totPrice,
+      totalPrice,
     };
     let validate = ValidateAddNewMenu(Supplier);
     let msg = validate?.message;
@@ -40,7 +40,7 @@ const AddSupplier = () => {
 
     Swal.fire("Congrats", " New Supplier Added  successfully", "success");
 
-    navigate("/AllSupplier");
+    navigate("/AllSuppliers");
   };
 }
 
@@ -102,6 +102,7 @@ const AddSupplier = () => {
                         class="form-control"
                         id="exampleFormControlTextarea3"
                         onChange={(f) => setSupplyDate(f.target.value)}
+                        max={new Date().toISOString().split("T")[0]}
                         required
                         placeholder=" Supply Date" 
                       />
@@ -124,13 +125,13 @@ const AddSupplier = () => {
                     style={{ fontSize: "15px" }}
                     className="btn btn-danger"
                   >
-                    Add Suplier{" "}
+                    Add Supplier{" "}
                   </button>
                 </a>
                 <br></br>
                 <br></br>
                 <a>
-                  <Link to="/AllEmployee">
+                  <Link to="/AllSuppliers">
                     <button
                       type="submit"
                       style={{ fontSize: "10px" }}

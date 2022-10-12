@@ -8,40 +8,43 @@ import axios from "axios";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Landingscreen from './Components/Landingscreen';
-import Login from "./Components/Auth/Login";
-import Register from "./Components/Auth/Register";
-import Profile from "./Components/Auth/Profile";
-import NavBar from "./Components/Layout/NavBar";
-import Footer from "./Components/Layout/Footer";
+import Landingscreen from './components/Landingscreen';
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
+import Profile from "./components/Auth/Profile";
+import NavBar from "./components/Layouts/NavBar";
+import Footer from "./components/Layouts/Footer";
 
-import AllMenus from "./Components/Restaurants/AllMenus";
-import Home from "./Components/Layout/Main";
-import EditMenu from "./Components/Restaurants/EditMenu";
-import AddMenu from "./Components/Restaurants/AddMenu"
-import Displaymenus from "./Components/Restaurants/Client/Displaymenus"
+import AllMenus from "./components/Restaurants/AllMenus";
+import Home from "./components/Layouts/Main";
+import EditMenu from "./components/Restaurants/EditMenu";
+import AddMenu from "./components/Restaurants/AddMenu"
+import Test from "./components/Test"
+
+
 //sadumini
-import AllEmployee from "./Components/Employee/AllEmployee"
-import AddEmployee from "./Components/Employee/AddEmployee"
-import AllSuppliers from "./Components/Supplier/AllSuppliers"
-import AddSupplier from "./Components/Supplier/AddSupplier"
-import UpdateSupplyer from "./Components/Supplier/UpdateSupplyer"
+import AllEmployee from "./components/Employee/AllEmployee";
+import AddEmployee from "./components/Employee/AddEmployee";
+import UpdateEmployee from './components/Employee/UpdateEmployee';
+import AllSuppliers from "./components/Supplier/AllSuppliers";
+import AddSupplier from "./components/Supplier/AddSupplier";
+import UpdateSupplyer from "./components/Supplier/UpdateSupplyer";
 
 //cheee
-import AddRoom from './Components/Room/Admin/AddRoom';
-import UpdateRooms from './Components/Room/Admin/UpdateRooms';
-import DisplayOneRoom from './Components/Room/Admin/DisplayOneRoom';
-import AllRooms from './Components/Room/Admin/AllRooms'
-import MainRoom from './Components/Room/Admin/MainRoom';
-import CusRoom from './Components/Room/Customer/CusRoom';
-import Booking from './Components/Room/Customer/Booking';
+import AddRoom from './components/Room/Admin/AddRoom';
+import UpdateRooms from './components/Room/Admin/UpdateRooms';
+import DisplayOneRoom from './components/Room/Admin/DisplayOneRoom';
+import AllRooms from './components/Room/Admin/AllRooms'
+import MainRoom from './components/Room/Admin/MainRoom';
+import CusRoom from './components/Room/Customer/CusRoom';
+import Booking from './components/Room/Customer/Booking';
 
-import CommentsSection from './Components/Comments/CommentsSection';
-import AddComment from './Components/Comments/AddComment';
-import EditComment from './Components/Comments/EditComment';
-import Room_Payment from './Components/Room/Customer/Room_Payment';
-import AllBookings from './Components/Room/Admin/AllBookings';
-import CancelBooking from './Components/Room/Customer/CancelBooking';
+import CommentsSection from './components/Comments/CommentsSection';
+import AddComment from './components/Comments/AddComment';
+import EditComment from './components/Comments/EditComment';
+import Room_Payment from './components/Room/Customer/Room_Payment';
+import AllBookings from './components/Room/Admin/AllBookings';
+import CancelBooking from './components/Room/Customer/CancelBooking';
 
 
 let isauth = localStorage.getItem('user');
@@ -76,6 +79,7 @@ function App() {
 
         <Route  path="/AllEmployee" element={<AllEmployee />} />
         <Route  path="/addemployee" element={<AddEmployee />} />
+        <Route  path="/updateEmployeeByID/:id" element={<UpdateEmployee />} />
         <Route  path="/AllSuppliers" element={<AllSuppliers />} />
         <Route  path="/addsupplier" element={<AddSupplier />} />
         <Route  path="/updateSupplierByID/:id" element={<UpdateSupplyer />} />
@@ -84,7 +88,8 @@ function App() {
         <Route path="/AllMenus" element={<AllMenus />} />
         <Route path="/updateMenuByID/:id" element={<EditMenu />} />
         <Route path="/addMenu" element={<AddMenu />} />
-        <Route path="/Displaymenus" element={<Displaymenus />} />
+       
+        <Route path="/Displaymenus" element={<Test />} />
 
 
         <Route path="/AddRoom" element={<AddRoom />} />
