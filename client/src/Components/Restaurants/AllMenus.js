@@ -35,7 +35,7 @@ import { jsPDF } from "jspdf";
 
 
   const removefood = id =>{
-    axios.delete(`http://localhost:5000/foods/RemoveFood/${id}`)
+    axios.delete(`http://localhost:5000/menu/RemoveFood/${id}`)
     .then(res => 
       
       {Swal.fire('Congrats' , ' remove successfully ' , 'success')
