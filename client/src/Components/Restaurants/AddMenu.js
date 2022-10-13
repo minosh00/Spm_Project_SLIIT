@@ -8,10 +8,9 @@ import { ValidateAddNewMenu } from "./Validation";
 
 const AddMenu = () => {
 
-  const [foodName, setfoodName] = useState("");
+  const [name, setfoodName] = useState("");
   const [price, setprice] = useState();
-  const [RestaurantsType, setRestaurantsType] = useState("");
-  const [Description, setDescription] = useState("");
+  const [description, setDescription] = useState("");
   const [images, setimages] = useState("");
 
   const navigate = useNavigate();
@@ -22,10 +21,10 @@ const AddMenu = () => {
 
     const addmenu = {
 
-        foodName,
+        name,
         price,
-        RestaurantsType,
-        Description,
+       
+        description,
         images,
    
     };
@@ -46,7 +45,7 @@ const AddMenu = () => {
         });
     } else {
        
-            axios.post("http://localhost:5000/foods/menu", addmenu);
+            axios.post("http://localhost:5000/menu/menu", addmenu);
 
             Swal.fire("Congrats", " New Menu Added  successfully", "success")
             navigate("/AllMenus");;
@@ -99,21 +98,7 @@ const AddMenu = () => {
                                      
                                    </div>
 
-                                   <div class="form-floating mb-3"><br></br><br></br>
-                                   <label for="floatingInput"  style={{color:"" , fontSize:"20px"}}  >  Restaurants Type </label>
-                                    
-                                       <select    class="form-control" id="exampleFormControlTextarea3"  style={{width:"190%"}}   onChange={(f) => setRestaurantsType(f.target.value)}    placeholder="  Restaurants Type"  >
-                                       <option selected>   Select Restaurants Type </option>
-  <option value="Bar">Bar</option>
-  <option value="Asian">Asian</option>
-  <option value="srilanka">Sri lanka </option>
-                                       </select>
-
-                                   </div>
-
                                   
-                                   
-                                   
                                    <div class="form-floating mb-3"><br></br><br></br>
                                    <label for="floatingInput"  style={{color:"" , fontSize:"20px"}}  >  Description </label>
                                     
