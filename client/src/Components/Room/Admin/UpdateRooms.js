@@ -63,10 +63,6 @@ const UpdateRooms = () => {
     setdescription(e.target.value);
   };
 
-
-
-
-
   const GetData = async () => {
 
     let data = await getRoomsById(id);

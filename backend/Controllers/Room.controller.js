@@ -52,7 +52,7 @@ const createRooms = async (req, res) => {
     const groups = req.body;
     if (groups.name.length < 1)
         return res.status(400).json({
-            errorMessage: "Please enter a foodName of at least 23 characters.",
+            errorMessage: "Please enter a Room of at least 23 characters.",
         });
     const newGroups = new ROOMS({ ...groups, creator: req.userId })
     try {
