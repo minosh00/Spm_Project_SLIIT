@@ -45,6 +45,7 @@ import EditComment from './components/Comments/EditComment';
 import Room_Payment from './components/Room/Customer/Room_Payment';
 import AllBookings from './components/Room/Admin/AllBookings';
 import CancelBooking from './components/Room/Customer/CancelBooking';
+import AllUsers from './components/Auth/AllUsers';
 
 
 let isauth = localStorage.getItem('user');
@@ -77,18 +78,18 @@ function App() {
         <Route exact path="/Profile" element={<Profile />} />
 
 
-        <Route  path="/AllEmployee" element={<AllEmployee />} />
-        <Route  path="/addemployee" element={<AddEmployee />} />
-        <Route  path="/updateEmployeeByID/:id" element={<UpdateEmployee />} />
-        <Route  path="/AllSuppliers" element={<AllSuppliers />} />
-        <Route  path="/addsupplier" element={<AddSupplier />} />
-        <Route  path="/updateSupplierByID/:id" element={<UpdateSupplyer />} />
+        <Route path="/AllEmployee" element={<AllEmployee />} />
+        <Route path="/addemployee" element={<AddEmployee />} />
+        <Route path="/updateEmployeeByID/:id" element={<UpdateEmployee />} />
+        <Route path="/AllSuppliers" element={<AllSuppliers />} />
+        <Route path="/addsupplier" element={<AddSupplier />} />
+        <Route path="/updateSupplierByID/:id" element={<UpdateSupplyer />} />
 
         <Route exact path="/dashboard" element={<Home />} />
         <Route path="/AllMenus" element={<AllMenus />} />
         <Route path="/updateMenuByID/:id" element={<EditMenu />} />
         <Route path="/addMenu" element={<AddMenu />} />
-       
+
         <Route path="/Displaymenus" element={<Test />} />
 
 
@@ -105,7 +106,7 @@ function App() {
         <Route path="/comments-section" element={<CommentsSection />} />
         <Route path="/comments-section/create/:roomID" element={<AddComment />} />
         <Route path="/comments-section/edit/:id" element={<EditComment />} />
-
+        <Route path="/allusers" element={<AllUsers />} />
       </Routes>
       <br></br>
       <Footer />

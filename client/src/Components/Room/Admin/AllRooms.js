@@ -3,11 +3,7 @@ import axios from "axios";
 import { Button, Modal, Carousel } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { DatePicker, Space } from 'antd';
-import autoTable from 'jspdf-autotable'
-import { jsPDF } from "jspdf";
-
 import moment from 'moment'
-import { useParams } from "react-router-dom";
 
 const AllRooms = () => {
 
@@ -219,10 +215,7 @@ const AllRooms = () => {
                     </Modal>
 
                     <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <button className='btn btn-warning' onClick={handleShow}>View Details</button>
-                      <Link to={`/updateRoomsByID1/${user?._id}/${fromdate}/${todate}`}>
-                        <button className='btn btn-primary'> Book Room</button>
-                      </Link>
+                      <button className='btn btn-primary' onClick={handleShow}>View Details</button>
                       <Link to={`/updateRoomsByID/${user?._id}`}>
                         <button className='btn btn-success'> Update Room</button>
                       </Link>

@@ -43,6 +43,13 @@ h1 {
     border-radius: 5px !important;
 }
 
+.previmg {
+    height: 400px;
+    width: 600px;
+    border-radius: 5px !important;
+}
+
+
 .feat {
     text-align: justify;
 }

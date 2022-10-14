@@ -12,7 +12,7 @@ router.post("/createUser", createUser);
 router.get("/getAllUsers", getUsers);
 router.get("/getUserById/:id", getUser);
 router.delete("/deleteUser/:id", deleteUser);
-router.patch("/updateUserById/:id", updateUser);
+router.put("/updateUserById/:id", updateUser);
 
 
 router.post("/signup",

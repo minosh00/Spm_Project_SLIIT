@@ -7,6 +7,7 @@ import CommentsSection from "../../Comments/CommentsSection";
 import StripeCheckout from 'react-stripe-checkout';
 import { AuthCustomer } from "../../../Services/AuthServices";
 import axios from 'axios'
+import { getRoomsById } from "../services/Room";
 
 const Booking = () => {
   const navigate = useNavigate();
@@ -111,21 +112,15 @@ const Booking = () => {
     console.log(token);
   }
 
-  // const GetData = async () => {
-  //   let data = await getRoomsById(id);
-  //   console.log("Update Rooms", data);
-  //   setname(data?.data?.name);
-  //   setmaxcount(data?.data?.maxcount);
-  //   setrentperday(data?.data?.rentperday);
-  //   settype(data?.data?.description);
-  //   setimageurls(data?.data?.imageurls);
-  //   setfeatures(data?.data?.features);
-  //   setdescription(data?.data?.description);
-  // };
+  const GetData = async () => {
+    let data = await getRoomsById(id);
+    console.log("Update Rooms", data);
+    setimageurls(data?.data?.imageurls);
+  };
 
-  // useEffect(() => {
-  //   GetData();
-  // }, []);
+  useEffect(() => {
+    GetData();
+  }, []);
 
   return (
     <div>
@@ -133,30 +128,67 @@ const Booking = () => {
         <div className="col p-3">
           <h3 className=" fw-bolder mb-4">
             <center>Booking Room</center>
+            <br />
           </h3>
 
           <form>
             <div className="row py-3">
-              <div className="col-md-6"> <br/>
-                <img src={room.imageurls} className="image-fluid" alt="" />
+              <div className="col-md-6"> <br /><br /><br />
+                <img src={imageurls[0]} className="previmg" alt="" />
               </div>
               <div className="col-md-6">
                 <b>
-                  <h1>Booking Details</h1>
+                  <h1><b>Booking Details</b></h1>
                   <hr />
                   <div>
-                    <p>Customer Name: {Fullname}</p>
-                    <p>Customer E-mail: {email}</p>
-                    <p>Room Name: {room.name}</p>
-                    <p>Check-in Date: {fromdate}</p>
-                    <p>Check-out Date: {todate}</p>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Customer Name</th>
+                          <th scope="col">{Fullname}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Customer E-mail</th>
+                          <td>{email}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Room Name</th>
+                          <td>{room.name}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Check-in Date</th>
+                          <td>{fromdate}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Check-out Date</th>
+                          <td>{todate}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div><br />
                   <div>
-                    <h1>Payment Details</h1>
+                    <h1><b>Payment Details</b></h1>
                     <hr />
-                    <p>Rent Per Day: LKR {room.rentperday}/=</p>
-                    <p>Total Days: {totDates}</p>
-                    <p>Total Amount: LKR {totAmount}/=</p>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Rent Per Day</th>
+                          <th scope="col">LKR: {room.rentperday}/=</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">Total Days</th>
+                          <td>{totDates}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Total Amount</th>
+                          <td>LKR: {totAmount}/=</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </b>
               </div>
@@ -188,20 +220,19 @@ const Booking = () => {
         </div>
       </div>
 
-      <StripeCheckout
-        stripeKey="pk_test_51Lr1EmF53OEZBtIfnDtu50k4oS98pyE6AfE0grktJfgVawhf7fEMAIbuSnQLCjXTDqC9PHNoJa2JkuJuZUeCI26300PQrA3w3S"
-        token={handleToken}
-        billingAddress
-        shippingAddress
-        amount={totAmount * 100}
-        currency='LKR'>
-
-        <MDBBtn rounded
-          color="warning"
-          type="submit" className='btn btn-danger' onClick={bookRoom}>Pay Now</MDBBtn>
-
-      </StripeCheckout>
-
+      <div className="container text-end">
+        <StripeCheckout
+          stripeKey="pk_test_51Lr1EmF53OEZBtIfnDtu50k4oS98pyE6AfE0grktJfgVawhf7fEMAIbuSnQLCjXTDqC9PHNoJa2JkuJuZUeCI26300PQrA3w3S"
+          token={handleToken}
+          billingAddress
+          shippingAddress
+          amount={totAmount * 100}
+          currency='LKR'>
+          <MDBBtn rounded
+            color="warning"
+            type="submit" className='btn btn-danger' onClick={bookRoom}>Pay Now</MDBBtn>
+        </StripeCheckout>
+      </div>
       <div>
         <CommentsSection />
       </div>
